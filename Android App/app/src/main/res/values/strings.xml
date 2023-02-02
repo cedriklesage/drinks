@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Drinks</string>
+    <string name="title_activity_bottom_menu">Bottom_Menu</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_favorites">Favoris</string>
+    <string name="title_search">Recherche</string>
+    <string name="title_account">Mon compte</string>
 </resources>
