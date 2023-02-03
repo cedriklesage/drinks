@@ -4,4 +4,7 @@
     <color name="light_black">#21202A</color>
     <color name="dark_grey">#1A1C1E</color>
     <color name="white">#FFFFFF</color>
+
+
+    <color name="colorPrimary">#FF1E00</color>
 </resources>
