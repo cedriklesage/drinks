@@ -12,18 +12,22 @@
     <LinearLayout
         android:id="@+id/dotd_box"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
         android:background="@color/light_black"
-        android:padding="25dp">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/dotd_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
             android:layout_weight="0.3"
             android:divider="@drawable/ver_divider_lv1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="25dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp">
 
             <TextView
                 android:id="@+id/dotd_header"
@@ -46,8 +50,9 @@
             <LinearLayout
                 android:id="@+id/dotd_actions"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:divider="@drawable/hor_divider_lv1"
+                android:gravity="bottom"
                 android:maxHeight="48dip"
                 android:minHeight="48dip"
                 android:orientation="horizontal"
@@ -59,13 +64,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".2"
                     android:text="@string/dotd_discover"
-                    android:textColor="@color/black"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.9"
                     android:drawableLeft="@drawable/ic_heart_test"
                     android:gravity="center"
@@ -75,10 +80,41 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/dotd_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.6"
+            android:maxHeight="25dp"
+            android:paddingRight="10dp"
+            tools:srcCompat="@tools:sample/avatars" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/drinks_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtWeekDrinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/drink_of_week"
+                android:textColor="@color/white" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weekDrinks"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

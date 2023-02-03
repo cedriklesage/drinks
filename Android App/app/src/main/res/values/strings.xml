@@ -13,4 +13,7 @@
 
     <!-- PLACEHOLDER -->
     <string name="ph_drink">Martini aux fraises</string>
+
+    <string name="popular_header">Populaires en ce moment</string>
+    <string name="drink_of_week">Drinks de la semaine</string>
 </resources>
