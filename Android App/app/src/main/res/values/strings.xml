@@ -5,4 +5,12 @@
     <string name="title_favorites">Favoris</string>
     <string name="title_search">Recherche</string>
     <string name="title_account">Mon compte</string>
+
+
+    <!-- Drink of the day -->
+    <string name="dotd_header">Drink du jour</string>
+    <string name="dotd_discover">Découvrir</string>
+
+    <!-- PLACEHOLDER -->
+    <string name="ph_drink">Martini aux fraises</string>
 </resources>
