@@ -1,5 +1,6 @@
 package com.example.drinks;
 
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,17 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder> 
             super(itemView);
             txtName = itemView.findViewById(R.id.txtDrinkName);
             imgDrink = itemView.findViewById(R.id.drinkImage);
+
+            // Click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), DrinkDetails.class);
+                    intent.putExtra("id", drinks.get(getAdapterPosition()).getId());
+                    v.getContext().startActivity(intent);
+                }
+            });
+
         }
 
     }

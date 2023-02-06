@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +11,6 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,7 +19,7 @@ import retrofit2.Response;
 
 public class home extends AppCompatActivity {
 
-    DrinkAdapter drinkAdapter;
+    DrinkAdapter weeklyDrinkAdapter;
     RecyclerView weekDrinkRV;
 
 
@@ -40,7 +37,7 @@ public class home extends AppCompatActivity {
             @Override
             public void onResponse(Call<Drink> call, Response<Drink> response) {
                 Drink drink = response.body();
-                TextView drinkName = findViewById(R.id.dotd_name);
+                TextView drinkName = findViewById(R.id.drinkName);
                 drinkName.setText(drink.getName());
 
                 ImageView drinkImage = findViewById(R.id.dotd_image);
@@ -62,8 +59,8 @@ public class home extends AppCompatActivity {
                 List<Drink> drinks = response.body();
                 weekDrinkRV.setHasFixedSize(true);
                 weekDrinkRV.setLayoutManager(new LinearLayoutManager(home.this, LinearLayoutManager.HORIZONTAL, false));
-                drinkAdapter = new DrinkAdapter(drinks);
-                weekDrinkRV.setAdapter(drinkAdapter);
+                weeklyDrinkAdapter = new DrinkAdapter(drinks);
+                weekDrinkRV.setAdapter(weeklyDrinkAdapter);
             }
 
             @Override

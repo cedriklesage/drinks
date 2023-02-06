@@ -22,4 +22,11 @@ public interface InterfaceServeur {
     Call<List<Drink>> getDrinks(@Field("requete") String action);
 
 
+
+
+    // Get the categories of the drink
+    @POST("categories.php")
+    @FormUrlEncoded
+    Call<List<Category>> getDrinkCategories(@Field("requete") String action, @Field("id") int id);
+
 }
