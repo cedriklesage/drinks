@@ -30,7 +30,7 @@
     {
 
         //Retourne 7 recettes aléatoires
-        $sql = "select * from recettes";
+        $sql = "select * from recettes order by rand() limit 7";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetchAll();
 

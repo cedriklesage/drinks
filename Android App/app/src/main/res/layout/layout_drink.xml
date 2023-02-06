@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
     android:background="@color/light_black"
-    android:maxWidth="150dp"
-    android:maxHeight="150dp"
-    android:minWidth="150dp"
-    android:minHeight="150dp"
-    android:orientation="vertical">
+    android:maxWidth="200dp"
+    android:maxHeight="200dp"
+    android:minWidth="200dp"
+    android:minHeight="200dp"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/drinkImage"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="48dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtDrinkName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/playfair_display_bold"
-        android:text="Drink Name"
-        android:textAlignment="center"
+        android:width="175dp"
+        android:height="75dp"
+        android:fontFamily="@font/poppins_bold"
+        android:lineHeight="25dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:singleLine="false"
+        android:text="Drink Name LOL LOL"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/drinkImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

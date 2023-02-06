@@ -23,6 +23,8 @@ import retrofit2.Response;
 public class home extends AppCompatActivity {
 
     DrinkAdapter drinkAdapter;
+    RecyclerView weekDrinkRV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.home);
 
         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+        weekDrinkRV = findViewById(R.id.weekDrinks);
 
         //Get the drink of the day
         Call<Drink> call = serveur.getDailyDrink("getDailyDrink");
@@ -57,10 +60,9 @@ public class home extends AppCompatActivity {
             public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {
                 //Put in recycler view
                 List<Drink> drinks = response.body();
-                drinkAdapter = new DrinkAdapter(drinks);
-                RecyclerView weekDrinkRV = findViewById(R.id.weekDrinks);
                 weekDrinkRV.setHasFixedSize(true);
-                weekDrinkRV.setLayoutManager(new LinearLayoutManager(home.this, LinearLayoutManager.VERTICAL, false));
+                weekDrinkRV.setLayoutManager(new LinearLayoutManager(home.this, LinearLayoutManager.HORIZONTAL, false));
+                drinkAdapter = new DrinkAdapter(drinks);
                 weekDrinkRV.setAdapter(drinkAdapter);
             }
 
