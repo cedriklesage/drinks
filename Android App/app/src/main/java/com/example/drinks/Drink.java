@@ -7,7 +7,7 @@ import kotlin.jvm.internal.SerializedIr;
 public class Drink {
 
     @SerializedName("id")
-    private String id;
+    private int id;
 
     @SerializedName("title")
     private String name;
@@ -24,7 +24,7 @@ public class Drink {
     @SerializedName("image")
     private String image;
 
-    public Drink(String id, String name, String description, String temps, String etapes, String image) {
+    public Drink(int id, String name, String description, String temps, String etapes, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,7 +33,7 @@ public class Drink {
         this.image = image;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -57,7 +57,7 @@ public class Drink {
         return image;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

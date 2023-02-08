@@ -59,6 +59,11 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.ViewHolder> 
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DrinkDetails.class);
                     intent.putExtra("id", drinks.get(getAdapterPosition()).getId());
+                    intent.putExtra("name", drinks.get(getAdapterPosition()).getName());
+                    intent.putExtra("image", drinks.get(getAdapterPosition()).getImage());
+                    intent.putExtra("description", drinks.get(getAdapterPosition()).getDescription());
+                    intent.putExtra("temps", drinks.get(getAdapterPosition()).getTemps());
+                    intent.putExtra("etapes", drinks.get(getAdapterPosition()).getEtapes());
                     v.getContext().startActivity(intent);
                 }
             });

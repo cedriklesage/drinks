@@ -40,7 +40,7 @@ public class home extends AppCompatActivity {
                 TextView drinkName = findViewById(R.id.drinkName);
                 drinkName.setText(drink.getName());
 
-                ImageView drinkImage = findViewById(R.id.dotd_image);
+                ImageView drinkImage = findViewById(R.id.imageDrink);
                 Picasso.get().load(drink.getImage()).into(drinkImage);
             }
 
