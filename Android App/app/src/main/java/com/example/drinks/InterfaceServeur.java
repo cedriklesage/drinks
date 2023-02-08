@@ -2,6 +2,7 @@ package com.example.drinks;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -29,4 +30,18 @@ public interface InterfaceServeur {
     @FormUrlEncoded
     Call<List<Category>> getDrinkCategories(@Field("requete") String action, @Field("id") int id);
 
+    // Get the ingredients of the drink
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<List<Ingredient>> getDrinkIngredients(@Field("requete") String action, @Field("id") int id);
+
+    // Check if the drink is in the favorites
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<Boolean> isFavorite(@Field("requete") String action, @Field("idDrink") int id, @Field("idUser") int idUser);
+
+    // Change the status of the like button
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<Boolean> changeLike(@Field("requete") String action, @Field("idDrink") int id, @Field("idUser") int idUser);
 }

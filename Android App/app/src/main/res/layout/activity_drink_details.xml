@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
         android:background="@drawable/layout_topinfo_bg"
+        android:minHeight="200dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -79,29 +80,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <TextView
-                android:id="@+id/txtWeekDrinks2"
+                android:id="@+id/txtDetailIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="@string/drink_of_week"
+                android:text="@string/ingredients"
                 android:textColor="@color/white" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drinkIng"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:orientation="horizontal"
         android:padding="15dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
@@ -110,6 +119,16 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             app:iconTint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/btnLike"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:background="@drawable/layout_white_bg"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_like_off" />
+
     </LinearLayout>
 
 

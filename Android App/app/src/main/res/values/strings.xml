@@ -22,5 +22,6 @@
 
 
     <!-- Drink Details Page -->
+    <string name="ingredients">Ingrédients</string>
     <string name="drink_start">Commencer</string>
 </resources>

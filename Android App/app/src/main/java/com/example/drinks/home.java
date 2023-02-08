@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,8 @@ public class home extends AppCompatActivity {
     DrinkAdapter weeklyDrinkAdapter;
     RecyclerView weekDrinkRV;
 
+    Drink dailyDrink;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +40,12 @@ public class home extends AppCompatActivity {
         call.enqueue(new Callback<Drink>() {
             @Override
             public void onResponse(Call<Drink> call, Response<Drink> response) {
-                Drink drink = response.body();
+                dailyDrink = response.body();
                 TextView drinkName = findViewById(R.id.drinkName);
-                drinkName.setText(drink.getName());
+                drinkName.setText(dailyDrink.getName());
 
                 ImageView drinkImage = findViewById(R.id.imageDrink);
-                Picasso.get().load(drink.getImage()).into(drinkImage);
+                Picasso.get().load(dailyDrink.getImage()).into(drinkImage);
             }
 
             @Override
@@ -68,6 +72,18 @@ public class home extends AppCompatActivity {
                 Toast.makeText(home.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void dailyDrinkBtn(View view) {
+        Intent intent = new Intent(view.getContext(), DrinkDetails.class);
+        intent.putExtra("id", dailyDrink.getId());
+        intent.putExtra("name", dailyDrink.getName());
+        intent.putExtra("image", dailyDrink.getImage());
+        intent.putExtra("description", dailyDrink.getDescription());
+        intent.putExtra("temps", dailyDrink.getTemps());
+        intent.putExtra("etapes", dailyDrink.getEtapes());
+        view.getContext().startActivity(intent);
+
     }
 
 }

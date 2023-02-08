@@ -2,9 +2,13 @@ package com.example.drinks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,13 +26,23 @@ public class DrinkDetails extends AppCompatActivity {
 
     private int id;
     private String name, description , temps, etapes, image;
+    private Boolean isFavorite;
     CategoryAdapter categoryAdapter;
-    RecyclerView categoryRV;
+    IngredientAdapter ingredientAdapter;
+    RecyclerView categoryRV, ingredientsRV;
+
+    Button startBtn;
+    ImageButton likeBtn;
+    public InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink_details);
+
+        startBtn = findViewById(R.id.btnStart);
+        likeBtn = findViewById(R.id.btnLike);
 
         id = getIntent().getIntExtra("id", 0);
         temps = getIntent().getStringExtra("temps");
@@ -38,15 +53,20 @@ public class DrinkDetails extends AppCompatActivity {
         categoryRV.setHasFixedSize(true);
         categoryRV.setLayoutManager(new GridLayoutManager(this, 3));
 
-        InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+        ingredientsRV = findViewById(R.id.drinkIng);
+        ingredientsRV.setHasFixedSize(true);
+        ingredientsRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
 
         // Set the details of the drink
 
         TextView txtName = findViewById(R.id.drinkName);
         TextView txtDescription = findViewById(R.id.txtDescription);
+        Button btnStart = findViewById(R.id.btnStart);
 
         txtName.setText(getIntent().getStringExtra("name"));
         txtDescription.setText(getIntent().getStringExtra("description"));
+        btnStart.setText("Commencer (" + etapes + " étapes)");
         ImageView imgDrink = findViewById(R.id.imageDrink);
         Picasso.get().load(image).into(imgDrink);
 
@@ -67,5 +87,83 @@ public class DrinkDetails extends AppCompatActivity {
             }
         });
 
+        Call<List<Ingredient>> ingredientCall = serveur.getDrinkIngredients("getDrinkIngredients", id);
+        ingredientCall.enqueue(new Callback<List<Ingredient>>() {
+            @Override
+            public void onResponse(Call<List<Ingredient>> call, Response<List<Ingredient>> response) {
+                List<Ingredient> ingredients = response.body();
+                //Put in recycler view
+                ingredientAdapter = new IngredientAdapter(ingredients);
+                ingredientsRV.setAdapter(ingredientAdapter);
+            }
+            @Override
+            public void onFailure(Call<List<Ingredient>> call, Throwable t) {
+                Toast.makeText(DrinkDetails.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Check if the drink is in the favorites
+        Call<Boolean> favoriteCall = serveur.isFavorite("checkLike", id, 1);
+        favoriteCall.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Boolean checkLike = response.body();
+                if(checkLike){
+                    ImageButton btnLike = findViewById(R.id.btnLike);
+                    btnLike.setImageDrawable(getDrawable(R.drawable.ic_like_on));
+                    isFavorite = true;
+                }
+                else {
+                    ImageButton btnLike = findViewById(R.id.btnLike);
+                    btnLike.setImageDrawable(getDrawable(R.drawable.ic_like_off));
+                    isFavorite = false;
+                }
+            }
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(DrinkDetails.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        startBtn.setOnClickListener(v -> StartDrink());
+        likeBtn.setOnClickListener(v -> likeButton());
+
+
     }
+
+    public void StartDrink()
+    {
+        Intent intent = new Intent(this, DoingDrink.class);
+        intent.putExtra("id", id);
+        intent.putExtra("name", name);
+        startActivity(intent);
+    }
+
+    public void likeButton()
+    {
+
+        Call<Boolean> changeLikeCall = serveur.changeLike("switchLike", id, 1);
+        changeLikeCall.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Boolean changeLike = response.body();
+                if(changeLike){
+                    ImageButton btnLike = findViewById(R.id.btnLike);
+                    btnLike.setImageDrawable(getDrawable(R.drawable.ic_like_on));
+                    isFavorite = true;
+                }
+                else {
+                    ImageButton btnLike = findViewById(R.id.btnLike);
+                    btnLike.setImageDrawable(getDrawable(R.drawable.ic_like_off));
+                    isFavorite = false;
+                }
+            }
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(DrinkDetails.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }
