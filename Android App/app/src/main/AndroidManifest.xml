@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Favoris"
+            android:exported="false" />
+        <activity
             android:name=".DoingDrink"
             android:exported="false" />
         <activity
@@ -26,7 +29,7 @@
             android:exported="true"
             android:label="@string/title_activity_bottom_menu" />
         <activity
-            android:name=".home"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

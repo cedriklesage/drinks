@@ -24,6 +24,10 @@
         case "switchLike":
             switchLike($con);
             break;
+        
+        case "getLikedDrinks":
+            getLikedDrinks($con);
+            break;
     } 
 
 
@@ -99,6 +103,20 @@
             $con->exec($sql);
             echo json_encode(false);
         }
+    }
+
+    function getLikedDrinks($con)
+    {
+        $idUser = $_POST["idUser"];
+
+        $sql = "SELECT r.id, r.title, r.image, r.description, r.etapes, r.temps
+                FROM recettes r
+                INNER JOIN favoris f on r.id = f.recette_id
+                WHERE f.user_id = $idUser";
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetchAll();
+
+        echo json_encode($ligne);
     }
 
 ?>

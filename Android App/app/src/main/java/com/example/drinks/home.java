@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class home extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     DrinkAdapter weeklyDrinkAdapter;
     RecyclerView weekDrinkRV;
@@ -50,7 +51,7 @@ public class home extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Drink> call, Throwable t) {
-                Toast.makeText(home.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -62,14 +63,23 @@ public class home extends AppCompatActivity {
                 //Put in recycler view
                 List<Drink> drinks = response.body();
                 weekDrinkRV.setHasFixedSize(true);
-                weekDrinkRV.setLayoutManager(new LinearLayoutManager(home.this, LinearLayoutManager.HORIZONTAL, false));
+                weekDrinkRV.setLayoutManager(new LinearLayoutManager(Home.this, LinearLayoutManager.HORIZONTAL, false));
                 weeklyDrinkAdapter = new DrinkAdapter(drinks);
                 weekDrinkRV.setAdapter(weeklyDrinkAdapter);
             }
 
             @Override
             public void onFailure(Call<List<Drink>> call, Throwable t) {
-                Toast.makeText(home.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button favoriBtn = findViewById(R.id.favoriBtn);
+        favoriBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Favoris.class);
+                startActivity(intent);
             }
         });
     }

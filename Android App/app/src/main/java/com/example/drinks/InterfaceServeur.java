@@ -44,4 +44,9 @@ public interface InterfaceServeur {
     @POST("drinks.php")
     @FormUrlEncoded
     Call<Boolean> changeLike(@Field("requete") String action, @Field("idDrink") int id, @Field("idUser") int idUser);
+
+    // Get the favorite drinks of the user
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<List<Drink>> getFavoriteDrinks(@Field("requete") String action, @Field("idUser") int idUser);
 }
