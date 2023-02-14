@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:padding="36dp"
+    tools:context=".Register">
+
+    <TextView
+        android:id="@+id/register_BackButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Retour"
+        android:textColor="@color/white" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:max="100"
+        android:maxHeight="3dp"
+        android:minHeight="3dp"
+        android:progress="33"
+        android:progressBackgroundTint="@color/dark_grey"
+        android:progressTint="@color/white" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/register_header01"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/playfair_display_bold"
+        android:text="@string/register_header02"
+        android:textColor="@color/white"
+        android:textSize="36dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:divider="@drawable/hor_divider_lv1"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <EditText
+            android:id="@+id/register_PrenomTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/layout_input_bg"
+            android:ems="10"
+            android:firstBaselineToTopHeight="0dp"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="@string/register_prenom"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:lastBaselineToBottomHeight="0dp"
+            android:lineHeight="0dp"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_grey"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_NomTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/layout_input_bg"
+            android:ems="10"
+            android:firstBaselineToTopHeight="0dp"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="@string/register_nom"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:lastBaselineToBottomHeight="0dp"
+            android:lineHeight="0dp"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_grey"
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/register_EmailTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/layout_input_bg"
+        android:ems="10"
+        android:firstBaselineToTopHeight="0dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/register_email"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:lastBaselineToBottomHeight="0dp"
+        android:lineHeight="0dp"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/register_PasswordTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/layout_input_bg"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="@string/register_password"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="14sp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:includeFontPadding="false"
+        android:letterSpacing="0"
+        android:text="@string/register_next"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.drinks;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     private List<Category> categories;
+    InterfaceDrink interfaceDrink;
 
     public CategoryAdapter(List<Category> categories) {
         this.categories = categories;
@@ -44,6 +46,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryName = itemView.findViewById(R.id.categoryName);
+
+            itemView.setOnClickListener(v -> {
+                //If the view name is register
+                if (v.getContext().getClass().getSimpleName().equals("activity_register_categories")) {
+
+                }
+            });
         }
     }
 }

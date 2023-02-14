@@ -49,4 +49,19 @@ public interface InterfaceServeur {
     @POST("drinks.php")
     @FormUrlEncoded
     Call<List<Drink>> getFavoriteDrinks(@Field("requete") String action, @Field("idUser") int idUser);
+
+
+
+
+    // USER //
+
+    //Create a new user
+    @POST("users.php")
+    @FormUrlEncoded
+    Call<Boolean> createUser(@Field("requete") String action,
+                             @Field("prenom") String prenom,
+                             @Field("nom") String nom,
+                             @Field("email") String email,
+                             @Field("password") String password);
+
 }

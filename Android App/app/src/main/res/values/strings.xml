@@ -33,4 +33,19 @@
     <string name="onboarding_title_2">Découvrez les meilleurs cocktails en ville, à reproduire à la maison.</string>
     <string name="onboarding_create_account">Créer un compte</string>
     <string name="onboarding_login">Déjà inscrit? Se connecter</string>
+
+    <!-- Login -->
+
+
+    <!-- Register -->
+    <string name="register_header01">Informations de connexion</string>
+    <string name="register_header02">Apprenons à ce connaître.</string>
+    <string name="register_prenom">Prénom</string>
+    <string name="register_nom">Nom</string>
+    <string name="register_email">Courriel</string>
+    <string name="register_password">Mot de passe</string>
+    <string name="register_next">Suivant</string>
+
+    <string name="register_header03">À propos de vous</string>
+    <string name="register_header04">Découvrons vos goûts</string>
 </resources>
