@@ -24,9 +24,11 @@ public class Onboarding extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(Onboarding.this, Register.class);
+            Intent intent = new Intent(Onboarding.this, Login.class);
             startActivity(intent);
         });
 
     }
+
+
 }

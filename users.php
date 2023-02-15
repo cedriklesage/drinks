@@ -24,7 +24,12 @@
         try{
             $sql = "INSERT INTO users (first_name, last_name , email, password) VALUES ('$prenom', '$nom', '$courriel', MD5('$motDePasse'))";
             $resultat = $con->query($sql);
-            echo json_encode(true);
+
+            $sql = "SELECT id FROM users WHERE email = '$courriel' AND password = MD5('$motDePasse')";
+            $resultat = $con->query($sql);
+            $ligne = $resultat->fetch();
+
+            echo json_encode($ligne["id"]);
 
         }catch(Exception $e){
             echo json_encode(false);
@@ -41,14 +46,14 @@
         $courriel = $_POST["email"];
         $motDePasse = $_POST["password"];
 
-        $sql = "SELECT * FROM users WHERE email = '$courriel' AND password = MD5('$motDePasse')";
+        $sql = "SELECT id FROM users WHERE email = '$courriel' AND password = MD5('$motDePasse')";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetch();
 
         if($ligne == false)
-            echo json_encode(false);
+            echo json_encode(0);
         else
-            echo json_encode(true);
+            echo json_encode($ligne["id"]);
     }
 
 ?>

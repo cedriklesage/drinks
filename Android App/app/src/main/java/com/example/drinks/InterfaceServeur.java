@@ -1,5 +1,7 @@
 package com.example.drinks;
 
+import android.content.SharedPreferences;
+
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -46,6 +48,9 @@ public interface InterfaceServeur {
     Call<Boolean> changeLike(@Field("requete") String action, @Field("idDrink") int id, @Field("idUser") int idUser);
 
     // Get the favorite drinks of the user
+
+    // Get ID of user from shared preferences
+
     @POST("drinks.php")
     @FormUrlEncoded
     Call<List<Drink>> getFavoriteDrinks(@Field("requete") String action, @Field("idUser") int idUser);
@@ -58,10 +63,17 @@ public interface InterfaceServeur {
     //Create a new user
     @POST("users.php")
     @FormUrlEncoded
-    Call<Boolean> createUser(@Field("requete") String action,
+    Call<Integer> createUser(@Field("requete") String action,
                              @Field("prenom") String prenom,
                              @Field("nom") String nom,
                              @Field("email") String email,
                              @Field("password") String password);
+
+    //Login
+    @POST("users.php")
+    @FormUrlEncoded
+    Call<Integer> login(@Field("requete") String action,
+                     @Field("email") String email,
+                     @Field("password") String password);
 
 }

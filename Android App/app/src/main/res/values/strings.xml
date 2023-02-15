@@ -35,6 +35,11 @@
     <string name="onboarding_login">Déjà inscrit? Se connecter</string>
 
     <!-- Login -->
+    <string name="login_header01">Connexion</string>
+    <string name="login_header02">Heureux de vous revoir!</string>
+    <string name="login_email">Courriel</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="login_btn">Connexion</string>
 
 
     <!-- Register -->
@@ -48,4 +53,13 @@
 
     <string name="register_header03">À propos de vous</string>
     <string name="register_header04">Découvrons vos goûts</string>
+    <string name="title_activity_login">Login</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

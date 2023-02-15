@@ -100,7 +100,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/register_EmailTxt"
+        android:id="@+id/login_EmailTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
@@ -120,7 +120,7 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/register_PasswordTxt"
+        android:id="@+id/login_PasswordTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
@@ -142,7 +142,7 @@
 
 
     <Button
-        android:id="@+id/nextBtn"
+        android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"

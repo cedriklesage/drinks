@@ -95,5 +95,11 @@ public class Home extends AppCompatActivity {
         view.getContext().startActivity(intent);
 
     }
+    @Override
+    public void onBackPressed() {
+
+
+
+    }
 
 }

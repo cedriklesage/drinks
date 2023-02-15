@@ -5,13 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.security.MessageDigest;
 
 import retrofit2.Call;
 
@@ -28,9 +23,9 @@ public class Register extends AppCompatActivity {
 
         prenomTxt = findViewById(R.id.register_PrenomTxt);
         nomTxt = findViewById(R.id.register_NomTxt);
-        emailTxt = findViewById(R.id.register_EmailTxt);
-        passwordTxt = findViewById(R.id.register_PasswordTxt);
-        nextBtn = findViewById(R.id.nextBtn);
+        emailTxt = findViewById(R.id.login_EmailTxt);
+        passwordTxt = findViewById(R.id.login_PasswordTxt);
+        nextBtn = findViewById(R.id.loginBtn);
         backButton = findViewById(R.id.register_BackButton);
 
         nextBtn.setOnClickListener(v -> {
@@ -81,19 +76,24 @@ public class Register extends AppCompatActivity {
                 register.apply();
 
                 //Create the user
-                Call<Boolean> call = serveur.createUser("createUser", prenom, nom, email, password);
-                call.enqueue(new retrofit2.Callback<Boolean>() {
+                Call<Integer> call = serveur.createUser("createUser", prenom, nom, email, password);
+                call.enqueue(new retrofit2.Callback<Integer>() {
                     @Override
-                    public void onResponse(Call<Boolean> call, retrofit2.Response<Boolean> response) {
-                        if (response.body()) {
+                    public void onResponse(Call<Integer> call, retrofit2.Response<Integer> response) {
+                        if (response.body() != 0) {
+                            SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("id", response.body());
+                            editor.apply();
                             Intent intent = new Intent(Register.this, Home.class);
                             finish();
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
+                    public void onFailure(Call<Integer> call, Throwable t) {
                         System.out.println("Error: " + t.getMessage());
                     }
                 });

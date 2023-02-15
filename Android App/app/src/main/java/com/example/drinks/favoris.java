@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -27,7 +28,11 @@ public class Favoris extends AppCompatActivity {
         favorisRV = findViewById(R.id.favorisRV);
 
         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
-        Call<List<Drink>> call = serveur.getFavoriteDrinks("getLikedDrinks", 1);
+
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+        Integer userId = Integer.valueOf(preferences.getInt("id", 0));
+
+        Call<List<Drink>> call = serveur.getFavoriteDrinks("getLikedDrinks", userId);
         call.enqueue(new Callback<List<Drink>>() {
             @Override
             public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -101,9 +102,10 @@ public class DrinkDetails extends AppCompatActivity {
                 Toast.makeText(DrinkDetails.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
             }
         });
-
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+        Integer userId = Integer.valueOf(preferences.getInt("id", 0));
         // Check if the drink is in the favorites
-        Call<Boolean> favoriteCall = serveur.isFavorite("checkLike", id, 1);
+        Call<Boolean> favoriteCall = serveur.isFavorite("checkLike", id, userId);
         favoriteCall.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
@@ -141,8 +143,9 @@ public class DrinkDetails extends AppCompatActivity {
 
     public void likeButton()
     {
-
-        Call<Boolean> changeLikeCall = serveur.changeLike("switchLike", id, 1);
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+        Integer userId = Integer.valueOf(preferences.getInt("id", 0));
+        Call<Boolean> changeLikeCall = serveur.changeLike("switchLike", id, userId);
         changeLikeCall.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
