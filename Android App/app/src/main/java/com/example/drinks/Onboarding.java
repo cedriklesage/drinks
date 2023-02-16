@@ -3,6 +3,7 @@ package com.example.drinks;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -27,6 +28,16 @@ public class Onboarding extends AppCompatActivity {
             Intent intent = new Intent(Onboarding.this, Login.class);
             startActivity(intent);
         });
+
+        // Check if user is already logged in
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+        int id = preferences.getInt("id", -1);
+        if(id != -1)
+        {
+            Intent intent = new Intent(Onboarding.this, Home.class);
+            finish();
+            startActivity(intent);
+        }
 
     }
 
