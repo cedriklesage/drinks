@@ -2,7 +2,6 @@ package com.example.drinks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
@@ -47,8 +46,5 @@ public class Favoris extends AppCompatActivity {
                 Toast.makeText(Favoris.this, "Erreur de chargement, veuillez réessayer.", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
 }
