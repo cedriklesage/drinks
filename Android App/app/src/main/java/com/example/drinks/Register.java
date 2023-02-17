@@ -86,9 +86,10 @@ public class Register extends AppCompatActivity {
                             editor.putInt("id", response.body());
                             editor.apply();
                             Intent intent = new Intent(Register.this, HomeFragment.class);
-                            finish();
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            finish();
+
                         }
                     }
 

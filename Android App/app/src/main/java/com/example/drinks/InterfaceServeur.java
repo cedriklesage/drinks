@@ -76,4 +76,9 @@ public interface InterfaceServeur {
                      @Field("email") String email,
                      @Field("password") String password);
 
+    // Get steps of the drink
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<List<Etape>> loadSteps(@Field("requete") String action, @Field("idDrink") int id);
+
 }

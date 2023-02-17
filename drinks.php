@@ -28,6 +28,10 @@
         case "getLikedDrinks":
             getLikedDrinks($con);
             break;
+
+        case "loadSteps":
+            loadSteps($con);
+            break;
     } 
 
 
@@ -113,6 +117,27 @@
                 FROM recettes r
                 INNER JOIN favoris f on r.id = f.recette_id
                 WHERE f.user_id = $idUser";
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetchAll();
+
+        echo json_encode($ligne);
+    }
+
+    function loadSteps($con)
+    {
+        $idDrink = $_POST["idDrink"];
+
+        $sql = "SELECT e.id AS idStep,
+                e.titre AS titre,
+                e.description AS description,
+                e.type AS stepType,
+                e.quantite AS quantite,
+                e.temps AS temps,
+                i.nom AS nomIngredient,
+                i.image AS imageIngredient
+                FROM etapes e
+                INNER JOIN ingredients i on e.ingredient_id = i.id
+                WHERE e.recette_id = $idDrink";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetchAll();
 
