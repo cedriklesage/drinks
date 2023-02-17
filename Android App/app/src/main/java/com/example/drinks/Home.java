@@ -86,7 +86,7 @@ public class Home extends AppCompatActivity {
         favoriBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, Favoris.class);
+                Intent intent = new Intent(Home.this, FavoritesFragment.class);
                 startActivity(intent);
             }
         });

@@ -38,9 +38,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Favoris"
-            android:exported="false" />
-        <activity
             android:name=".DoingDrink"
             android:exported="false" />
         <activity
@@ -52,7 +49,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

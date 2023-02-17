@@ -34,7 +34,7 @@ public class Onboarding extends AppCompatActivity {
         int id = preferences.getInt("id", -1);
         if(id != -1)
         {
-            Intent intent = new Intent(Onboarding.this, Home.class);
+            Intent intent = new Intent(Onboarding.this, MainActivity.class);
             finish();
             startActivity(intent);
         }
