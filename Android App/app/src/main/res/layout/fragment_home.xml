@@ -60,11 +60,10 @@
                 android:showDividers="middle">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/dailyDrinkBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:onClick="dailyDrinkBtn"
                     android:text="@string/dotd_discover"
                     android:textAllCaps="false"
                     android:textColor="@color/black" />
@@ -108,7 +107,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/weekDrinks"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 

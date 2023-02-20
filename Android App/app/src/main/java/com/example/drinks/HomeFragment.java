@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +29,6 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     DrinkAdapter weeklyDrinkAdapter;
     RecyclerView weekDrinkRV;
-
     Drink dailyDrink;
     public HomeFragment() {
         // Required empty public constructor
@@ -84,12 +84,30 @@ public class HomeFragment extends Fragment {
                 weekDrinkRV.setHasFixedSize(true);
                 weekDrinkRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
                 weeklyDrinkAdapter = new DrinkAdapter(drinks);
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(weekDrinkRV.getContext(), DividerItemDecoration.HORIZONTAL);
+                dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.hor_divider_lv1));
+                weekDrinkRV.addItemDecoration(dividerItemDecoration);
                 weekDrinkRV.setAdapter(weeklyDrinkAdapter);
             }
 
             @Override
             public void onFailure(Call<List<Drink>> call, Throwable t) {
                 Toast.makeText(getActivity(), "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button dailyDrinkBtn = view.findViewById(R.id.dailyDrinkBtn);
+        dailyDrinkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DrinkDetails.class);
+                intent.putExtra("id", dailyDrink.getId());
+                intent.putExtra("name", dailyDrink.getName());
+                intent.putExtra("image", dailyDrink.getImage());
+                intent.putExtra("description", dailyDrink.getDescription());
+                intent.putExtra("temps", dailyDrink.getTemps());
+                intent.putExtra("etapes", dailyDrink.getEtapes());
+                v.getContext().startActivity(intent);
             }
         });
 

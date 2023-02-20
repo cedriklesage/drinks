@@ -32,6 +32,10 @@
         case "loadSteps":
             loadSteps($con);
             break;
+
+        case "getRecommendedDrinks":
+            getRecommendedDrinks($con);
+            break;
     } 
 
 
@@ -138,6 +142,16 @@
                 FROM etapes e
                 INNER JOIN ingredients i on e.ingredient_id = i.id
                 WHERE e.recette_id = $idDrink";
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetchAll();
+
+        echo json_encode($ligne);
+    }
+
+    function getRecommendedDrinks($con)
+    {
+        // Retourne 24 recettes aléatoires
+        $sql = "select * from recettes order by rand() limit 24";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetchAll();
 

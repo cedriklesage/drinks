@@ -59,11 +59,11 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
         public IngredientViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.ingredientName);
+            name = itemView.findViewById(R.id.txtDrinkName);
             type = itemView.findViewById(R.id.ingredientType);
             alcool = itemView.findViewById(R.id.ingredientAlcool);
             quantite = itemView.findViewById(R.id.ingredientQuantity);
-            image = itemView.findViewById(R.id.ingredientImg);
+            image = itemView.findViewById(R.id.drinkImage);
         }
     }
 

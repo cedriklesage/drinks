@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,7 +50,7 @@ public class FavoritesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //setContentView(R.layout.fragment_favorites);
 
-        favorisRV = view.findViewById(R.id.favorisRV);
+        favorisRV = view.findViewById(R.id.discoverRV);
 
         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
 
@@ -62,6 +63,9 @@ public class FavoritesFragment extends Fragment {
             public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {
                 List<Drink> drinks = response.body();
                 favorisAdapter = new DrinkAdapter(drinks);
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(favorisRV.getContext(), DividerItemDecoration.HORIZONTAL);
+                dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.hor_divider_lv1));
+                favorisRV.addItemDecoration(dividerItemDecoration);
                 favorisRV.setAdapter(favorisAdapter);
                 favorisRV.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             }
