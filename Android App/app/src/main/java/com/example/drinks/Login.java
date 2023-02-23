@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putInt("id", response.body());
                             editor.apply();
-                            Intent intent = new Intent(Login.this, HomeFragment.class);
+                            Intent intent = new Intent(Login.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();

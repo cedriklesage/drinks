@@ -42,6 +42,7 @@
     <string name="login_email">Courriel</string>
     <string name="login_password">Mot de passe</string>
     <string name="login_btn">Connexion</string>
+    <string name="logout_btn">Déconnexion</string>
 
 
     <!-- Register -->

@@ -26,7 +26,7 @@ import retrofit2.Response;
 public class FavoritesFragment extends Fragment {
 
     RecyclerView favorisRV;
-    DrinkAdapter favorisAdapter;
+    DiscoverAdapter favorisAdapter;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -62,7 +62,7 @@ public class FavoritesFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {
                 List<Drink> drinks = response.body();
-                favorisAdapter = new DrinkAdapter(drinks);
+                favorisAdapter = new DiscoverAdapter(drinks);
                 DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(favorisRV.getContext(), DividerItemDecoration.HORIZONTAL);
                 dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.hor_divider_lv1));
                 favorisRV.addItemDecoration(dividerItemDecoration);
