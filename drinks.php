@@ -41,7 +41,6 @@
 
     function getDailyDrink($con)
     {
-
         $sql = "select * from recettes order by rand() limit 1";
         $resultat = $con->query($sql); 
                 
@@ -52,7 +51,6 @@
 
     function getWeeklyDrinks($con)
     {
-
         //Retourne 7 recettes aléatoires
         $sql = "select * from recettes order by rand() limit 7";
         $resultat = $con->query($sql);

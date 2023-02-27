@@ -1,0 +1,781 @@
+/*
+Theme Name: Studio F - Theme
+Author: Cedrik Lesage
+Author URI: https://wp-content.co/
+Description: Customed theme for Studio F
+Version: 1.0
+Tested upto: 5.4
+*/
+
+/* COLORS */
+:root{
+    --primary-color: #D90452 ;
+    --primary-color-gradient: linear-gradient(125deg, #007AFF 0%, #003cbe 100%);
+    --off-white: #F2F2F2;
+    --off-white-gradient: linear-gradient(125deg, #fffdf5 0%, #F2ECCE 100%);
+    --black: #0F0F13;
+    --dark-grey: #1A1C1E;
+    --light-black: #21202A;
+    --light-grey: #a3a3a3;
+}
+
+html{
+    scroll-behavior: smooth;
+    margin: 0 !important;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--black);
+    
+    
+}
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+    background-color: var(--black);
+    color: var(--off-white);
+
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+h1{
+    line-height: 0.8;
+}
+
+/* Selection */
+::selection{
+    background: var(--off-white);
+    color: var(--primary-color);
+}
+
+
+/* -------------- */
+
+/* Width settings */
+
+/* -------------- */
+
+.w-auto{
+    width: auto;
+}	
+
+.w-100{
+    width: 100%;
+}
+
+.w-100vh{
+    width: 100vw;
+}
+
+.w-85{  
+    width: 85%;
+}
+
+.w-70{
+    width: 70%;
+}
+
+@media screen and (max-width: 768px){
+    .w-70{
+        width: 85%;
+    }
+}
+
+.w-m-70{
+    width: 70%;
+}
+
+@media screen and (max-width: 768px){
+    .w-m-70{
+        width: 100% !important;
+    }
+}
+
+.w-50{
+    width: 50%;
+}
+
+.w-40{
+    width: 40%;
+}
+
+.w-30{
+    width: 30%;
+}
+
+/* --------------- */
+
+/* Height settings */
+
+/* --------------- */
+
+.h-100{
+    height: 100%;
+}
+
+.h-70{
+    height: 70%;
+}
+
+.h-50{
+    height: 50%;
+}
+
+.h-100vh{
+    height: 100vh;
+}
+
+.h-75vh{
+    height: 75vh;
+}
+
+/* --------------- */
+
+/* Margin settings */
+
+/* --------------- */
+
+.m-0{
+    margin: 0;
+}
+
+.m-center{
+    margin: 0 auto;
+}
+
+.m-t-auto{
+    margin-top: auto;
+}
+
+.m-t-25{
+    margin-top: 25px;
+}
+
+.m-t-50{
+    margin-top: 50px;
+}
+
+.m-t-150{
+    margin-top: 150px;
+}
+
+.m-b-25{
+    margin-bottom: 25px;
+}
+
+.m-b-50{
+    margin-bottom: 50px;
+}
+
+.m-b-150{
+    margin-bottom: 150px;
+}
+
+.m-l-15{
+    margin-left: 15px;
+}
+
+.m-r-25{
+    margin-right: 25px;
+}
+
+/* ---------------- */
+
+/* Padding settings */
+
+/* ---------------- */
+.p-10{
+    padding: 10px;
+}
+
+.p-15{
+    padding: 15px;
+}
+
+.p-25{
+    padding: 25px;
+}
+
+.p-50{
+    padding: 50px;
+}
+
+.p-t-50{
+    padding-top: 50px;
+}
+
+.p-b-10{
+    padding-bottom: 10px;
+}
+
+.p-b-50{
+    padding-bottom: 50px;
+}
+
+.p-r-25{
+    padding-right: 25px;
+}
+
+.p-r-50{
+    padding-right: 50px;
+}
+
+.p-l-25{
+    padding-left: 25px;
+}
+
+.p-l-50{
+    padding-left: 50px;
+}
+
+
+
+
+/* ---------------- */
+
+/* Display settings */
+
+/* ---------------- */
+
+.d-flex,.d-m-flex, .d-m-flex-rev{
+    display: flex;
+}
+
+
+@media screen and (max-width: 768px){
+    .d-m-flex{
+        flex-direction: column;
+    }
+
+    .d-m-flex div{
+        width: 100% !important;
+    }
+
+    .d-m-flex-rev{
+        flex-direction: column-reverse;
+    }
+
+    .d-m-flex-rev div{
+        width: 100% !important;
+    }
+}
+
+.d-block{
+    display: block;
+}
+
+.d-center{
+    justify-content: center;
+    align-items: center;
+}
+
+.d-bottom{
+    align-items: flex-end;
+}
+
+.j-between{
+    justify-content: space-between;
+}
+
+.j-center{
+    justify-content: center;
+}
+.j-start{
+    justify-content: flex-start;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.align-center{
+    align-items: center;
+}
+.align-self-center{
+    align-self: center;
+}
+
+.d-grid-2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+}
+
+@media screen and (max-width: 768px){
+    .d-grid-2{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.grid-overlap-2{
+    grid-column: 2 / 4;
+}	
+
+.over-hide{
+    overflow: hidden;
+}
+
+/* --------- */
+
+/* Animation */
+
+/* --------- */
+
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+}
+  
+.hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 4px;
+    top: 110%;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.animate-5s{
+    animation-duration: 5s; 
+}
+
+
+/* Texts settings */
+
+.mainTitle{
+    font-weight: 300;
+    padding: 0;
+    color: var(--off-white);
+}
+
+.bigMainTitle{
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--off-white);
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 1024px){
+    .bigMainTitle{
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .bigMainTitle{
+        font-size: 2rem;
+    }
+}
+
+.bigMainTitle .highlight{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.mainTitle .highlight{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+p .highlight{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+}
+
+.t-center{
+    text-align: center;
+}
+
+.f-size-3{
+    font-size: 3rem;
+}
+
+@media screen and (max-width: 1024px){
+    .f-size-3{
+        font-size: 2rem;
+    }
+}
+
+.sub-title-upper{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: 5px;
+}
+
+.sub-title-upper .highlight{
+    color: var(--primary-color);
+}
+
+.small-text{
+    font-size: .75rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+
+}
+
+/* ---------- */
+
+/* Composents */
+
+/* ---------- */
+
+.rounded{
+    border-radius: 10px;
+}
+
+.separation{
+    width: 100%;
+    height: 100px;
+}
+
+.separation2{
+    width: 100%;
+    height: 200px;
+}
+
+.opacity-0{
+    opacity: 0;
+}
+
+.sub-title-line{
+    width: 100%;
+    padding-left: 15px;
+    height: 2px;
+    background-color: var(--off-white);
+}
+
+.btn{
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .5s ease;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.main-btn{
+    /* Background gradient outside of the element */
+    background: linear-gradient(90deg, var(--off-white) 50%, #000000 50.1%);
+    background-size: 205% 1px; 
+    color: var(--off-white);
+    border: 1px solid var(--off-white);
+    background-position: 100% 0px;
+}
+
+.main-btn:hover{
+    background-position: 0 0px;
+    color: black;
+}
+
+.drink-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.drink-card{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: var(--light-black);
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all .25s ease;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.drink-card .drink-name{
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--off-white);
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    width: 80%;
+}
+.drink-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    transform: translateY(15px);
+    position: absolute;
+    bottom: -75px;
+    transition: all .25s ease
+}
+
+.drink-card:hover img{
+    transform: scale(1.05);
+}
+
+.left-section{
+    width: 20%;
+    max-width: 300px;
+    min-width: 75px;
+}
+
+.nav-menu{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    transition: 0.25s all ease;
+}
+
+.nav-menu .nav-menu-links{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-menu .nav-menu-links .nav-menu-link{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: all .15s ease;
+    background-color: white;
+    color: var(--light-grey);
+    border-radius: 10px;
+}
+
+.nav-menu .nav-menu-links .nav-menu-link:hover{
+    background-color: #F2F2F2;
+    color: var(--black);
+}
+
+.nav-menu-link img{
+    width: 25px;
+    height: 25px;
+}
+
+.nav-menu-link span{
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    .nav-menu-link span{
+        display: none;
+    }
+    .nav-menu .nav-menu-links .nav-menu-link{
+        justify-content: center;
+    }
+}
+
+.right-section{
+    height: 100vh;
+    width: 100%;
+    overflow-y: scroll;
+    position: relative;
+}
+
+/* DAILY DRINK - TOP BANNER DRINK */
+.top-banner-drink{
+    width:100%;
+    height: 350px;
+    background-color: var(--light-black);
+    border-radius: 10px;
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.top-banner-drink > img{
+    height: 100%;
+    width: 30%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.top-banner-drink .drink-name{
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--off-white);
+    line-height: 1;
+}
+
+.top-banner-drink .drink-info{
+    width: 50%;
+}
+
+.top-banner-drink .see-more-button{
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--off-white);
+    overflow: hidden;
+    transition: all .25s ease;
+    display: flex;
+    align-items: center;
+    color: var(--black);
+    width: fit-content;
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.top-banner-drink .see-more-button:hover{
+    background-color: var(--off-white);
+    color: black;
+}
+
+/* DRINK POPUP */
+
+.drink-popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    box-sizing: border-box;
+    transition: all .25s ease;
+    background-color: #00000080;
+}
+
+.drink-popup.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.drink-popup > .drink-section{
+    width: 80%;
+    height: 80%;
+    background-color: var(--light-black);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.drink-popup-right{
+    position: fixed;
+    width: 80%;
+    height: 100%;
+    background-color: var(--dark-grey);
+    z-index: 100;
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .40s ease;
+    transform: translateX(25%);
+
+}
+
+.drink-popup-right.active{
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+}
+
+.drink-popup-right .main-info{
+    width: 100%;
+    max-width: 500px;
+    height: 150px;
+}
+.drink-popup-right .popup-drink-back-button{
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--off-white);
+    transition: all .25s ease;
+    color: var(--black);
+    width: 50px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.drink-popup-right .main-info .popup-drink-name{
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--off-white);
+    line-height: 1;
+    margin-top: 25px;
+}
+
+.drink-popup-right .main-info .popup-drink-desc{
+    font-size: 1rem;
+    color: var(--off-white);
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.drink-popup-right .main-ingredients{
+    width: 100%;
+    height: 150px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 20px;
+}
+
+.drink-popup-right .main-ingredients .ingredient{
+    padding: 10px;
+    background-color: white;
+    color: var(--black);
+    border-radius: 10px;
+    display: flex;
+    align-items: end;
+    gap: 15px;
+}
+
+.drink-popup-right .main-ingredients .ingredient img{
+    width: 75px;
+    height: 75px;
+}
+
+
+
+
+
+
+.drink-content{
+    transform: translate(0);
+    opacity: 1;
+    transition: all .40s ease;
+}
+
+.drink-content.active{
+    transform: translate(-25%);
+    opacity: 0;
+}
