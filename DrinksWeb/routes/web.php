@@ -18,3 +18,6 @@ use App\Http\Controllers\RecettesController;
 Route::get('/',
     [RecettesController::class, 'accueil'])->name('accueil');
 
+Route::get('/drink/{id}',
+    [RecettesController::class, 'drink'])->name('drink');
+

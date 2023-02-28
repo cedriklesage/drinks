@@ -12,19 +12,6 @@
 </head>
 <body>
 
-    <div class="drink-popup">
-        <div class="drink-section">
-            <img src="" alt="">
-            <div class="drink-info d-flex j-center flex-col">
-                <h3 class="drink-name">
-                    Placeholder name
-                </h3>
-                <p>Placeholder description</p>
-                <a href="" class="start-drink">Commencer la recette</a>
-            </div>
-        </div>
-    </div>
-
     <div class="d-flex">
         <div class="left-section p-10">
             <div class="nav-menu p-15">
@@ -42,25 +29,19 @@
         <div class="right-section p-10">
 
             <div class="drink-popup-right p-25">
-                <button class="popup-drink-back-button">X</button>
-                <div class="main-info">
-                    <h1 class="popup-drink-name">Placeholder name</h1>
-                    <p class="popup-drink-desc">Placeholder description</p>
-                </div>
-                <div class="main-ingredients">
-                    <div class="ingredient">
-                        <img src="{{asset('img/icons/edit.png')}}" alt="">
-                        <span>Placeholder ingredient</span>
+                <div>
+                    <button class="popup-drink-back-button">X</button>
+                    <div class="main-info">
+                        <h1 class="popup-drink-name">Placeholder name</h1>
+                        <p class="popup-drink-desc">Placeholder description</p>
                     </div>
-                    <div class="ingredient">
-                        <img src="{{asset('img/icons/edit.png')}}" alt="">
-                        <span>Placeholder ingredient</span>
-                    </div>
-                    <div class="ingredient">
-                        <img src="{{asset('img/icons/edit.png')}}" alt="">
-                        <span>Placeholder ingredient</span>
+                    <h2 class="m-b-25">Ingrédients</h2>
+                    <div class="main-ingredients">
                     </div>
                 </div>
+
+
+                <a href="" class="btn start-drink">Commencer la recette</a>
 
             </div>
 
@@ -110,6 +91,38 @@
 
                 document.querySelector('.popup-drink-name').innerHTML = drinkCard.dataset.title;
                 document.querySelector('.popup-drink-desc').innerHTML = drinkCard.dataset.description;
+                document.querySelector('.start-drink').href = `/drink/${drinkCard.dataset.id}`;
+
+                /* Delete every div in the main-ingredients div */
+                document.querySelectorAll('.main-ingredients .ingredient').forEach(ingredient => {
+                    ingredient.remove();
+                })
+
+                const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/drinks.php';
+                const data = new URLSearchParams();
+                data.append('requete', 'getDrinkIngredients');
+                data.append('id', drinkCard.dataset.id);
+
+                fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: data
+                })
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(ingredient => {
+                        const ingredientDiv = document.createElement('div');
+                        ingredientDiv.classList.add('ingredient');
+                        ingredientDiv.innerHTML = `
+                            <img src="${ingredient.image}" alt="">
+                            <span>${ingredient.nom}</span>
+                        `;
+                        document.querySelector('.main-ingredients').appendChild(ingredientDiv);
+                    })
+                })
+                .catch(error => console.error(error));
             })
         })
 
@@ -121,6 +134,39 @@
 
             document.querySelector('.popup-drink-name').innerHTML = document.querySelector('.see-more-button').dataset.title;
             document.querySelector('.popup-drink-desc').innerHTML = document.querySelector('.see-more-button').dataset.description;
+            document.querySelector('.start-drink').href = `/drink/${drinkCard.dataset.id}`;
+            
+            /* Delete every div in the main-ingredients div */
+            document.querySelectorAll('.main-ingredients .ingredient').forEach(ingredient => {
+                ingredient.remove();
+            })
+
+            const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/drinks.php';
+            const data = new URLSearchParams();
+            data.append('requete', 'getDrinkIngredients');
+            data.append('id', document.querySelector('.see-more-button').dataset.id);   
+
+            fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(ingredient => {
+                    const ingredientDiv = document.createElement('div');
+                    ingredientDiv.classList.add('ingredient');
+                    ingredientDiv.innerHTML = `
+                        <img src="${ingredient.image}" alt="">
+                        <span>${ingredient.nom}</span>
+                    `;
+                    document.querySelector('.main-ingredients').appendChild(ingredientDiv);
+                })
+            })
+            .catch(error => console.error(error));
+
         })
 
         // Close the drink popup
@@ -131,16 +177,23 @@
             document.querySelector('.nav-menu').classList.remove('active');
         })
 
-
-        const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/drinks.php?id=' + encodeURIComponent('2');
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
-
-        //console.log response
-        console.log(response);
+        
+        
+        // Get the <body> element
+        const body = document.querySelector('body');
+      
+        // Add the 'loading' class to the <body> element
+        body.classList.add('loading');
+        
+        // Or, remove the 'loading' class once all assets (images, scripts, etc.) have finished loading
+        window.addEventListener('load', () => {
+            body.classList.remove('loading');
+        });
+        
+        // Add the 'loading' class back to the <body> element when the user navigates to a different page
+        window.addEventListener('beforeunload', () => {
+            body.classList.add('loading');
+        });
 
     </script>
 </body>
