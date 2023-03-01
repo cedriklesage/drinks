@@ -16,7 +16,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
     public AdapterList(List<User> l)
     {
-        listeUser = l;
+        this.listeUser = l;
     }
 
     @Override

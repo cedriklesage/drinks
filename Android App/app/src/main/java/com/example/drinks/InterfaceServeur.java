@@ -78,6 +78,5 @@ public interface InterfaceServeur {
     //Get list of users
     @POST("users.php")
     @FormUrlEncoded
-    Call<Boolean> getUsers(@Field("requete") String action);
-
+    Call<List<User>> getUsers(@Field("requete") String action);
 }
