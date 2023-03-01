@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Drinks</string>
+
+    <!-- Bottom Menu -->
     <string name="title_activity_bottom_menu">Bottom_Menu</string>
     <string name="title_home">Accueil</string>
     <string name="title_favorites">Favoris</string>
     <string name="title_search">Recherche</string>
     <string name="title_account">Mon compte</string>
-
+    <string name="title_admin">Admin</string>
 
     <!-- Drink of the day -->
     <string name="dotd_header">Drink du jour</string>
@@ -13,7 +15,6 @@
 
     <!-- PLACEHOLDER -->
     <string name="ph_drink">Martini aux fraises</string>
-
     <string name="popular_header">Populaires en ce moment</string>
     <string name="drink_of_week">Drinks de la semaine</string>
     <string name="title_activity_drink_details">DrinkDetails</string>
@@ -25,10 +26,8 @@
     <string name="ingredients">Ingrédients</string>
     <string name="drink_start">Commencer</string>
     <string name="drink_next">Suivant</string>
-
     <string name="favorite">Favoris</string>
     <string name="discover">Découvrir</string>
-
 
     <!-- Onboarding -->
     <string name="onboarding_title_1">Bienvenue sur Drinks!</string>
@@ -44,7 +43,6 @@
     <string name="login_btn">Connexion</string>
     <string name="logout_btn">Déconnexion</string>
 
-
     <!-- Register -->
     <string name="register_header01">Informations de connexion</string>
     <string name="register_header02">Apprenons à ce connaître.</string>
@@ -58,15 +56,12 @@
     <string name="register_header04">Découvrons vos goûts</string>
     <string name="title_activity_login">Login</string>
 
+    <!-- Account -->
+    <string name="admin_btn">Admin CRUD</string>
 
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <!-- Admin -->
+    <string name="admin_header">Admin</string>
+    <string name="admin_add">Ajouter un usager</string>
+    <string name="admin_list">Liste des usagers</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
