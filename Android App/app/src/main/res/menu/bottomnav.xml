@@ -24,5 +24,9 @@
         android:icon="@drawable/ic_compte"
         android:title="@string/title_account"
         app:showAsAction="always" />
-
+    <item
+        android:id="@+id/navAdmin"
+        android:icon="@drawable/ic_admin"
+        android:title="@string/title_admin"
+        app:showAsAction="always" />
 </menu>

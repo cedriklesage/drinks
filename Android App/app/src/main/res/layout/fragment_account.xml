@@ -36,6 +36,14 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/adminBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/admin_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <Button
             android:id="@+id/logoutBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -24,9 +24,6 @@ public interface InterfaceServeur {
     @FormUrlEncoded
     Call<List<Drink>> getDrinks(@Field("requete") String action);
 
-
-
-
     // Get the categories of the drink
     @POST("categories.php")
     @FormUrlEncoded
@@ -50,12 +47,14 @@ public interface InterfaceServeur {
     // Get the favorite drinks of the user
 
     // Get ID of user from shared preferences
-
     @POST("drinks.php")
     @FormUrlEncoded
     Call<List<Drink>> getFavoriteDrinks(@Field("requete") String action, @Field("idUser") int idUser);
 
-
+    // Get steps of the drink
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<List<Etape>> loadSteps(@Field("requete") String action, @Field("idDrink") int id);
 
 
     // USER //
@@ -76,9 +75,9 @@ public interface InterfaceServeur {
                      @Field("email") String email,
                      @Field("password") String password);
 
-    // Get steps of the drink
-    @POST("drinks.php")
+    //Get list of users
+    @POST("users.php")
     @FormUrlEncoded
-    Call<List<Etape>> loadSteps(@Field("requete") String action, @Field("idDrink") int id);
+    Call<Boolean> getUsers(@Field("requete") String action);
 
 }
