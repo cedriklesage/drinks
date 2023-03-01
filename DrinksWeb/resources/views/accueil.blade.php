@@ -134,7 +134,7 @@
 
             document.querySelector('.popup-drink-name').innerHTML = document.querySelector('.see-more-button').dataset.title;
             document.querySelector('.popup-drink-desc').innerHTML = document.querySelector('.see-more-button').dataset.description;
-            document.querySelector('.start-drink').href = `/drink/${drinkCard.dataset.id}`;
+            document.querySelector('.start-drink').href = "/drink/" + document.querySelector('.see-more-button').dataset.id;
             
             /* Delete every div in the main-ingredients div */
             document.querySelectorAll('.main-ingredients .ingredient').forEach(ingredient => {

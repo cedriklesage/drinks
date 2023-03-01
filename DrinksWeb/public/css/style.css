@@ -15,7 +15,7 @@ Tested upto: 5.4
     --off-white-gradient: linear-gradient(125deg, #fffdf5 0%, #F2ECCE 100%);
     --black: #0F0F13;
     --dark-grey: #1A1C1E;
-    --light-black: #21202A;
+    --light-black: #21202a;
     --light-grey: #a3a3a3;
 }
 
@@ -38,6 +38,7 @@ body{
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     pointer-events: auto;
+    height: 100vh;
 }
 body.loaded{
     opacity: 0;
@@ -62,7 +63,7 @@ h1{
 /* Selection */
 ::selection{
     background: var(--off-white);
-    color: var(--primary-color);
+    color: #F23030;
 }
 
 
@@ -524,11 +525,12 @@ p .highlight{
 }
 .drink-card .drink-name{
     font-size: 1.5rem;
+    line-height: 1;
     font-weight: 800;
     color: var(--off-white);
     text-align: center;
     position: absolute;
-    top: 10px;
+    top: 20px;
     width: 80%;
 }
 .drink-card img{
@@ -747,7 +749,7 @@ p .highlight{
     object-fit: contain;
 }
 
-.drink-popup-right .btn{
+.drink-popup-right .btn, .next-step-button{
     width: 100%;
     max-width: 500px;
     margin-left: auto;
@@ -757,7 +759,7 @@ p .highlight{
     color: var(--black);
     transition: 0.25s all ease;
 }
-.drink-popup-right .btn:hover{
+.drink-popup-right .btn:hover, .next-step-button:hover{
     transform: scale(1.05);
 }
 
@@ -776,12 +778,23 @@ p .highlight{
     transform: translate(-25%);
     opacity: 0;
 }
+.making-drink{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.15s all ease;
+}
 
+.making-drink .step-info{
+    width: 100%;
+}
 
-.drink-step-header{
+.drink-step-title{
     font-size: 3rem;
     font-weight: 900;
     color: var(--off-white);
     line-height: 1;
-    margin-top: 25px;
+    margin-top: 50px;
 }
