@@ -27,7 +27,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
     @Override
     public void onBindViewHolder(MonViewHolder holder, int position) {
-        holder.txtFirst_Name.setText(listeUser.get(position).getFirst_name());
+        holder.firstNameTxt.setText(listeUser.get(position).getFirst_name());
     }
 
     @Override
@@ -37,13 +37,15 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
     public class MonViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtFirst_Name;
+        TextView firstNameTxt;
+        TextView emailTxt;
 
         public MonViewHolder(@NonNull View itemView) {
 
             super(itemView);
 
-            txtFirst_Name = itemView.findViewById(R.id.txtName);
+            firstNameTxt = itemView.findViewById(R.id.txtName);
+            emailTxt = itemView.findViewById(R.id.txtEmail);
         }
     }
 }

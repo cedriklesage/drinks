@@ -63,5 +63,6 @@
     <string name="admin_header">Admin</string>
     <string name="admin_add">Ajouter un usager</string>
     <string name="admin_list">Liste des usagers</string>
+    <string name="admin_list_header">Liste des usagers</string>
 
 </resources>
