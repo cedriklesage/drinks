@@ -27,8 +27,10 @@
             android:id="@+id/txtAdminName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins"
-            android:text="Admin"
+            android:text="Admin Name"
             android:textColor="@color/white"
             android:textSize="14sp" />
 

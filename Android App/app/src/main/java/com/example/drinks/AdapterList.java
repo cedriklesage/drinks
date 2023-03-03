@@ -1,5 +1,6 @@
 package com.example.drinks;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import java.util.List;
 public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder> {
 
     private List<User> listeUser;
+    InterfaceClick gestionClick;
+    Context context;
 
-    public AdapterList(List<User> l)
-    {
+    public AdapterList(List<User> l, InterfaceClick InterfaceClick, Context context) {
+        gestionClick = InterfaceClick;
         this.listeUser = l;
     }
 
@@ -35,6 +38,21 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
         return listeUser.size();
     }
 
+    public void deleteUser(int position) {
+        listeUser.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void addUser(User u) {
+        listeUser.add(u);
+        notifyItemInserted(listeUser.size() - 1);
+    }
+
+    public void updateUser(User u, int position) {
+        listeUser.set(position, u);
+        notifyItemChanged(position);
+    }
+
     public class MonViewHolder extends RecyclerView.ViewHolder {
 
         TextView firstNameTxt;
@@ -46,6 +64,27 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
             firstNameTxt = itemView.findViewById(R.id.txtName);
             emailTxt = itemView.findViewById(R.id.txtEmail);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    User u = listeUser.get(position);
+
+                    gestionClick.gestionClick(u, position);
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    int position = getAdapterPosition();
+                    int id = listeUser.get(position).getId();
+                    gestionClick.gestionLongClick(position, id);
+                    return true;
+                }
+            });
         }
+
     }
 }

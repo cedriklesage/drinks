@@ -79,4 +79,20 @@ public interface InterfaceServeur {
     @POST("users.php")
     @FormUrlEncoded
     Call<List<User>> getUsers(@Field("requete") String action);
+
+    //Delete user
+    @POST("users.php")
+    @FormUrlEncoded
+    Call<Boolean> deleteUser(@Field("requete") String action,
+                                  @Field("id") int id);
+
+    //Update user
+    @POST("users.php")
+    @FormUrlEncoded
+    Call<Boolean> updateUser(@Field("requete") String action,
+                             @Field("id") int id,
+                             @Field("prenom") String prenom,
+                             @Field("nom") String nom,
+                             @Field("email") String email,
+                             @Field("password") String password);
 }

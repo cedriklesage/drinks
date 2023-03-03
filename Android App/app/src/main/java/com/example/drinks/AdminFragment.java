@@ -16,6 +16,7 @@ import android.widget.Button;
 public class AdminFragment extends Fragment {
 
     Button btnListUsers;
+    Button btnAddUser;
 
     public AdminFragment() {
         // Required empty public constructor
@@ -39,12 +40,21 @@ public class AdminFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         btnListUsers = view.findViewById(R.id.listUsersBtn);
+        btnAddUser = view.findViewById(R.id.addUserBtn);
 
         btnListUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavController navController = NavHostFragment.findNavController(AdminFragment.this);
                 navController.navigate(R.id.action_navAdmin_to_usersListFragment);
+            }
+        });
+
+        btnAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = NavHostFragment.findNavController(AdminFragment.this);
+
             }
         });
     }

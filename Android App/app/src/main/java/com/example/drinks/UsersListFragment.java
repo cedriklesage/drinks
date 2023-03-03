@@ -1,10 +1,10 @@
 package com.example.drinks;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +16,12 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UsersListFragment extends Fragment {
+public class UsersListFragment extends Fragment implements InterfaceClick {
 
     private RecyclerView recyclerView;
     private AdapterList adapterList;
@@ -58,7 +59,7 @@ public class UsersListFragment extends Fragment {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 List<User> users = response.body();
-                adapterList = new AdapterList(users);
+                adapterList = new AdapterList(users, UsersListFragment.this, getActivity());
                 recyclerView.setAdapter(adapterList);
             }
 
@@ -67,5 +68,45 @@ public class UsersListFragment extends Fragment {
                 String message = t.getMessage();
             }
         });
+    }
+
+    @Override
+    public void gestionClick(User u, int position) {
+
+    }
+
+    @Override
+    public void gestionLongClick(int position, int id) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+        builder.setTitle("Supprimer");
+        builder.setMessage("Voulez-vous supprimer cet usager ?");
+        builder.setPositiveButton("Supprimer", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                adapterList.deleteUser(position);
+
+                InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+                Call<Boolean> call = serveur.deleteUser("deleteUser", id);
+
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        boolean b = response.body();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        String message = t.getMessage();
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }
