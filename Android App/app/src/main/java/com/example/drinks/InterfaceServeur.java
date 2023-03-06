@@ -94,5 +94,7 @@ public interface InterfaceServeur {
                              @Field("prenom") String prenom,
                              @Field("nom") String nom,
                              @Field("email") String email,
-                             @Field("password") String password);
+                             @Field("admin") int admin);
+
+//    Call<ResponseBody> updateUser(String updateUser, User u, int id);
 }

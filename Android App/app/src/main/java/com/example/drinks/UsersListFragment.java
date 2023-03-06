@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import java.util.List;
 
@@ -25,6 +30,7 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
 
     private RecyclerView recyclerView;
     private AdapterList adapterList;
+    int admin;
 
     public UsersListFragment() {
         // Required empty public constructor
@@ -72,7 +78,85 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
 
     @Override
     public void gestionClick(User u, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("Modifier");
 
+        View view = getLayoutInflater().inflate(R.layout.layout_edit, null);
+        builder.setView(view);
+
+        AlertDialog alertDialog1 = builder.create();
+
+        EditText upNom = view.findViewById(R.id.upNom);
+        EditText upPrenom = view.findViewById(R.id.upPrenom);
+        EditText upEmail = view.findViewById(R.id.upEmail);
+        RadioButton rbUpAdmin = view.findViewById(R.id.rbUpAdmin);
+        RadioButton rbUpUser = view.findViewById(R.id.rbUpUser);
+        Button btUpValider = view.findViewById(R.id.btUpValider);
+        Button btUpAnnuler = view.findViewById(R.id.btUpAnnuler);
+
+        upNom.setText(u.getFirst_name());
+        upPrenom.setText(u.getLast_name());
+        upEmail.setText(u.getEmail());
+
+        if(u.getAdmin() == 1){
+            rbUpAdmin.setChecked(true);
+            admin = 1;
+        }
+        else{
+            rbUpUser.setChecked(true);
+            admin = 0;
+        }
+
+        rbUpUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    admin = 0;
+                }
+                else {
+                    admin = 1;
+                }
+            }
+        });
+
+        alertDialog1.show();
+
+        btUpValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                User u = new User(
+                        upPrenom.getText().toString(),
+                        upNom.getText().toString(),
+                        upEmail.getText().toString(),
+                        admin);
+
+                InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+                Call<Boolean> call = serveur.updateUser("updateUser", u.getId(), upPrenom.getText().toString(), upNom.getText().toString(), upEmail.getText().toString(), admin);
+
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        boolean b = response.body();
+                        adapterList.updateUser(u, position);
+                        alertDialog1.dismiss();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        String message = t.getMessage();
+                    }
+                });
+            }
+        });
+
+        btUpAnnuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog1.dismiss();
+            }
+        });
     }
 
     @Override

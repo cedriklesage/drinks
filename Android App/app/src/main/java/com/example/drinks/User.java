@@ -20,14 +20,21 @@ public class User {
     String password;
 
     @SerializedName("admin")
-    boolean admin;
+    int admin;
 
-    public User(int id, String first_name, String last_name, String email, String password, boolean admin) {
+    public User(int id, String first_name, String last_name, String email, String password, int admin) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.password = password;
+        this.admin = admin;
+    }
+
+    public User(String first_name, String last_name, String email, int admin) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
         this.admin = admin;
     }
 
@@ -51,7 +58,7 @@ public class User {
         return password;
     }
 
-    public boolean isAdmin() {
+    public int getAdmin() {
         return admin;
     }
 
@@ -75,7 +82,7 @@ public class User {
         this.password = password;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(int admin) {
         this.admin = admin;
     }
 

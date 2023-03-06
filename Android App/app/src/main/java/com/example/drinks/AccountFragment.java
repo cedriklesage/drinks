@@ -45,7 +45,6 @@ public class AccountFragment extends Fragment {
         //setContentView(R.layout.fragment_account);
 
         btnLogout = view.findViewById(R.id.logoutBtn);
-        btnAdmin = view.findViewById(R.id.adminBtn);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,15 +56,6 @@ public class AccountFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), Onboarding.class);
                 getActivity().finish();
                 startActivity(intent);
-            }
-        });
-
-        btnAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-                NavController navController = navHostFragment.getNavController();
-                navController.navigate(R.id.action_navAccount_to_navAdmin);
             }
         });
     }
