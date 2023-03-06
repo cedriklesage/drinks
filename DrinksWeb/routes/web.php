@@ -15,9 +15,33 @@ use App\Http\Controllers\RecettesController;
 |
 */
 
+/* Onboarding and login */
+
+Route::get('/bienvenue',
+    [RecettesController::class, 'onboarding'])->name('onboarding');
+
+Route::get('/connexion',
+    [RecettesController::class, 'sign_in_page'])->name('sign-in');
+
+Route::post('/connexion',
+    [RecettesController::class, 'sign_in'])->name('sign-in-attempt');
+
+Route::get('/inscription',
+    [RecettesController::class, 'sign_up_page'])->name('sign-up');
+
+Route::post('/inscription',
+    [RecettesController::class, 'sign_up'])->name('sign-up-attempt');
+
+
+
 Route::get('/',
     [RecettesController::class, 'accueil'])->name('accueil');
 
 Route::get('/drink/{id}',
     [RecettesController::class, 'drink'])->name('drink');
+
+Route::get('/favoris',
+    [RecettesController::class, 'favoris'])->name('favoris');
+
+
 

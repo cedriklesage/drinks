@@ -1,0 +1,546 @@
+/* COLORS */
+:root{
+    --primary-color: #F23030 ;
+    --primary-color-gradient: linear-gradient(125deg, #007AFF 0%, #003cbe 100%);
+    --off-white: #F2F2F2;
+    --off-white-gradient: linear-gradient(125deg, #fffdf5 0%, #F2ECCE 100%);
+    --black: #0F0F13;
+    --dark-grey: #1A1C1E;
+    --light-black: #21202a;
+    --light-grey: #727D8E;
+}
+
+html{
+    scroll-behavior: smooth;
+    margin: 0 !important;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--black);
+    
+    
+}
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+    color: var(--off-white);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: auto;
+    height: 100vh;
+    overflow: hidden;
+}
+body.loaded{
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+h1{
+    font-size: 3rem;
+    line-height: 1.15;
+}
+h1 span
+{
+    color: var(--primary-color);
+}
+
+/* Selection */
+::selection{
+    background: var(--off-white);
+    color: #F23030;
+}
+
+/* -------------- */
+
+/* Width settings */
+
+/* -------------- */
+
+.w-auto{
+    width: auto;
+}	
+
+.w-100{
+    width: 100%;
+}
+
+.w-100vh{
+    width: 100vw;
+}
+
+.w-85{  
+    width: 85%;
+}
+
+.w-70{
+    width: 70%;
+}
+
+@media screen and (max-width: 768px){
+    .w-70{
+        width: 85%;
+    }
+}
+
+.w-m-70{
+    width: 70%;
+}
+
+@media screen and (max-width: 768px){
+    .w-m-70{
+        width: 100% !important;
+    }
+}
+
+.w-50{
+    width: 50%;
+}
+
+.w-40{
+    width: 40%;
+}
+
+.w-30{
+    width: 30%;
+}
+
+/* --------------- */
+
+/* Height settings */
+
+/* --------------- */
+
+.h-100{
+    height: 100%;
+}
+
+.h-70{
+    height: 70%;
+}
+
+.h-50{
+    height: 50%;
+}
+
+.h-100vh{
+    height: 100vh;
+}
+
+.h-75vh{
+    height: 75vh;
+}
+
+/* --------------- */
+
+/* Margin settings */
+
+/* --------------- */
+
+.m-0{
+    margin: 0;
+}
+
+.m-center{
+    margin: 0 auto;
+}
+
+.m-t-auto{
+    margin-top: auto;
+}
+
+.m-t-25{
+    margin-top: 25px;
+}
+
+.m-t-50{
+    margin-top: 50px;
+}
+
+.m-t-150{
+    margin-top: 150px;
+}
+
+.m-b-10{
+    margin-bottom: 10px;
+}
+
+.m-b-25{
+    margin-bottom: 25px;
+}
+
+.m-b-50{
+    margin-bottom: 50px;
+}
+
+.m-b-150{
+    margin-bottom: 150px;
+}
+
+.m-l-15{
+    margin-left: 15px;
+}
+
+.m-r-25{
+    margin-right: 25px;
+}
+
+/* ---------------- */
+
+/* Padding settings */
+
+/* ---------------- */
+.p-10{
+    padding: 10px;
+}
+
+.p-15{
+    padding: 15px;
+}
+
+.p-25{
+    padding: 25px;
+}
+
+.p-50{
+    padding: 50px;
+}
+
+.p-t-50{
+    padding-top: 50px;
+}
+
+.p-b-10{
+    padding-bottom: 10px;
+}
+
+.p-b-50{
+    padding-bottom: 50px;
+}
+
+.p-r-25{
+    padding-right: 25px;
+}
+
+.p-r-50{
+    padding-right: 50px;
+}
+
+.p-l-25{
+    padding-left: 25px;
+}
+
+.p-l-50{
+    padding-left: 50px;
+}
+
+
+
+
+/* ---------------- */
+
+/* Display settings */
+
+/* ---------------- */
+
+.d-flex,.d-m-flex, .d-m-flex-rev{
+    display: flex;
+}
+
+
+@media screen and (max-width: 768px){
+    .d-m-flex{
+        flex-direction: column;
+    }
+
+    .d-m-flex div{
+        width: 100% !important;
+    }
+
+    .d-m-flex-rev{
+        flex-direction: column-reverse;
+    }
+
+    .d-m-flex-rev div{
+        width: 100% !important;
+    }
+}
+
+.d-block{
+    display: block;
+}
+
+.d-center{
+    justify-content: center;
+    align-items: center;
+}
+
+.d-bottom{
+    align-items: flex-end;
+}
+
+.j-between{
+    justify-content: space-between;
+}
+
+.j-center{
+    justify-content: center;
+}
+.j-start{
+    justify-content: flex-start;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.align-center{
+    align-items: center;
+}
+.align-self-center{
+    align-self: center;
+}
+
+.d-grid-2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+}
+
+@media screen and (max-width: 768px){
+    .d-grid-2{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.grid-overlap-2{
+    grid-column: 2 / 4;
+}	
+
+.over-hide{
+    overflow: hidden;
+}
+
+
+.left-section{}
+
+.right-section{
+    background-color: white;
+    color: var(--black);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.right-section img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* Filter with orange color over*/
+    filter: brightness(0.8);
+
+}
+
+.btn{
+    cursor: pointer;
+    display: inline-block;
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: none;
+    font-weight: 500;
+    font-size: 0.8rem;
+    transition: all 0.15s ease-in-out;
+    width: fit-content;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.main-button{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.main-button:hover{
+
+}
+
+.sub-button{
+    background-color: var(--black);
+    color: var(--light-grey);
+    border: 1px solid var(--light-grey);
+}
+
+.sub-button:hover{
+    border: 1px solid var(--off-white);
+    color: var(--off-white);
+}
+
+.gap-25{
+    gap: 25px;
+}
+
+.sub-svg{
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--black);
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all .3s ease;
+}
+
+.sub-button:hover .sub-svg{
+    transform: translateX(0px);
+}
+
+.main-svg{
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: white;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all .3s ease;
+}
+
+.main-button:hover .main-svg{
+    transform: translateX(0px);
+}
+
+.back-svg{
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: white;
+    stroke-width: 2;
+    transform: translateX(-5px) rotate(180deg);
+    transition: all .3s ease;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+input{
+    border: 1px solid var(--light-black);
+    border-radius: 10px;
+    background-color: var(--light-black);
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--light-grey);
+    transition: all 0.15s ease-in-out;
+}
+
+input:focus{
+    color: var(--off-white);
+}
+
+/* DRINK POPUP */
+
+.login-popup{
+    position: fixed;
+    width: 80%;
+    background-color: var(--primary-color);
+    z-index: 100;
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .40s ease;
+    transform: translateX(25%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.login-popup.active{
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+}
+
+.circle {
+    position: absolute; /*positionnement absolu pour pouvoir placer les cercles où on veut*/
+    top: calc(100% * var(--y)); /*positionnement vertical en fonction du pourcentage de la hauteur de la page*/
+    left: calc(100% * var(--x)); /*positionnement horizontal en fonction du pourcentage de la largeur de la page*/
+    width: 400px; /*taille du cercle*/
+    height: 400px;
+    background-color: var(--primary-color);
+    border-radius: 50%; /*pour avoir un cercle*/
+    filter: blur(100px); /*pour flouter le cercle*/
+    z-index: -1; /*pour placer les cercles derrière tout le contenu*/
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-logo{
+    width: 100px;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1110px){
+    .left-section{
+        width: 100% !important;
+    }
+    .right-section{
+        display: none;
+    }
+    .circle-1{
+        --y: -0.4 !important;
+        --x: 0.1 !important;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .left-section{
+        padding: 0px !important;
+    }
+    h1{
+        font-size: 2rem !important;
+    }
+    .buttons{
+        width: 100% !important;
+    }
+    .btn{
+        padding: 15px 15px !important;
+    }
+}
+

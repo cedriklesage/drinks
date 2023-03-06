@@ -12,61 +12,57 @@
 </head>
 <body>
 
-    <header class="header w-50 p-25">
-        <a href=""><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
-    </header>
-    <div class="drink-popup-right p-25">
-        <div>
-            <button class="popup-drink-back-button">X</button>
-            <div class="main-info">
-                <h1 class="popup-drink-name">Placeholder name</h1>
-                <p class="popup-drink-desc">Placeholder description</p>
-            </div>
-            <h2 class="m-b-25">Ingrédients</h2>
-            <div class="main-ingredients">
+    <div class="d-flex">
+        <div class="left-section p-10">
+            <div class="nav-menu p-15">
+                <div class="nav-menu-logo">Drink's</div>
+                <div class="nav-menu-links">
+                    <a href="" class="nav-menu-link p-10"><img src="{{asset('img/icons/alert.png')}}" alt=""><span>Accueil</span></a>
+                    <a href="" class="nav-menu-link p-10"><img src="{{asset('img/icons/edit.png')}}" alt=""><span>Recettes</span></a>
+                    <a href="{{route('favoris')}}" class="nav-menu-link p-10"><img src="{{asset('img/icons/alert.png')}}" alt=""><span>Favoris</span></a>
+                    <a href="" class="nav-menu-link p-10"><img src="{{asset('img/icons/edit.png')}}" alt=""><span>Profil</span></a>
+                </div>
+                <div class="nav-menu-logout">Logout</div>
             </div>
         </div>
-        <a href="" class="btn start-drink">Commencer la recette</a>
-    </div>
-    <div class="w-100 p-10">
-        <div class="drink-content">
-            <!--
-            <div class="top-banner-drink">
-                <img src="{{$dailyDrink->image}}" alt="">
-                <div class="drink-info d-flex j-center flex-col">
-                    <p class="daily-drink">Drink du jour</p>
-                    <h3 class="drink-name">
-                        {{$dailyDrink->title}}
-                    </h3>
-                    <p>{{$dailyDrink->description}}</p>
-                    <button class="see-more-button"
-                    data-id="{{$dailyDrink->id}}" data-title="{{$dailyDrink->title}}"
-                    data-description="{{$dailyDrink->description}}" data-image="{{$dailyDrink->image}}">Voir la recette</button>
+    
+        <div class="right-section p-10">
+            <div class="drink-popup-right p-25">
+                <div>
+                    <button class="popup-drink-back-button">X</button>
+                    <div class="main-info">
+                        <h1 class="popup-drink-name">Placeholder name</h1>
+                        <p class="popup-drink-desc">Placeholder description</p>
+                    </div>
+                    <h2 class="m-b-25">Ingrédients</h2>
+                    <div class="main-ingredients">
+                    </div>
+                </div>
+
+
+                <a href="" class="btn start-drink">Commencer la recette</a>
+
+            </div>
+            @if($drinks != null)
+                <div class="drink-grid">
+                    @foreach($drinks as $drink)
+                    <button href="" class="drink-card"
+                    data-id="{{$drink->id}}" data-title="{{$drink->title}}"
+                    data-description="{{$drink->description}}"data-image="{{$drink->image}}">
+                        <img src="{{$drink->image}}" alt="">
+                        <span class="drink-name">{{$drink->title}}</span>
+                    </button>
+                    @endforeach
+                </div>
+            @else
+                <div class="middle-message">
+                    <img src="{{asset('img/sad-monster.png')}}" alt="">
+                    <h1 class="m-b-10">Aucun favoris</h1>
+                    <p class="">Vous n'avez pas de goût, pour le moment...</p>
                 </div>
             </div>
-            -->
+            @endif
 
-            <div class="drink-grid">
-                @foreach($drinks as $drink)
-                <button href="" class="drink-card"
-                data-id="{{$drink->id}}" data-title="{{$drink->title}}"
-                data-description="{{$drink->description}}"data-image="{{$drink->image}}">
-                    <div class="drink-categories">
-                        <div class="drink-category">Martini</div>
-                    </div>
-                    <img src="{{$drink->image}}" alt="">
-                    <span class="drink-name">{{$drink->title}}</span>
-                    <div class="see-drink">Voir plus
-                        <svg viewBox="0 0 22 22" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <line x1="15" y1="16" x2="19" y2="12"></line>
-                            <line x1="15" y1="8" x2="19" y2="12"></line>
-                        </svg>
-                    </div>
-                </button>
-                @endforeach
-            </div>
         </div>
     </div>
 
@@ -82,13 +78,11 @@
                 document.querySelector('.drink-popup-right').classList.add('active');
                 document.querySelector('.drink-content').classList.add('active');
 
+                document.querySelector('.nav-menu').classList.add('active');
+
                 document.querySelector('.popup-drink-name').innerHTML = drinkCard.dataset.title;
                 document.querySelector('.popup-drink-desc').innerHTML = drinkCard.dataset.description;
                 document.querySelector('.start-drink').href = `/drink/${drinkCard.dataset.id}`;
-
-                /* Deactivate scroll */
-                document.querySelector('body').classList.add('no-scroll');
-
 
                 /* Delete every div in the main-ingredients div */
                 document.querySelectorAll('.main-ingredients .ingredient').forEach(ingredient => {
@@ -123,15 +117,17 @@
             })
         })
 
-        /*
         document.querySelector('.see-more-button').addEventListener('click', () => {
             document.querySelector('.drink-popup-right').classList.add('active');
             document.querySelector('.drink-content').classList.add('active');
+
+            document.querySelector('.nav-menu').classList.add('active');
 
             document.querySelector('.popup-drink-name').innerHTML = document.querySelector('.see-more-button').dataset.title;
             document.querySelector('.popup-drink-desc').innerHTML = document.querySelector('.see-more-button').dataset.description;
             document.querySelector('.start-drink').href = "/drink/" + document.querySelector('.see-more-button').dataset.id;
             
+            /* Delete every div in the main-ingredients div */
             document.querySelectorAll('.main-ingredients .ingredient').forEach(ingredient => {
                 ingredient.remove();
             })
@@ -162,12 +158,14 @@
             })
             .catch(error => console.error(error));
 
-        })*/
+        })
 
         // Close the drink popup
         document.querySelector('.popup-drink-back-button').addEventListener('click', () => {
             document.querySelector('.drink-popup-right').classList.remove('active');
             document.querySelector('.drink-content').classList.remove('active');
+            
+            document.querySelector('.nav-menu').classList.remove('active');
         })
 
         
