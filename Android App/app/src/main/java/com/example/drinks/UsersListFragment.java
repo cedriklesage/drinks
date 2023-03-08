@@ -87,16 +87,16 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
 
         AlertDialog alertDialog1 = builder.create();
 
-        EditText upNom = view.findViewById(R.id.upNom);
         EditText upPrenom = view.findViewById(R.id.upPrenom);
+        EditText upNom = view.findViewById(R.id.upNom);
         EditText upEmail = view.findViewById(R.id.upEmail);
         RadioButton rbUpAdmin = view.findViewById(R.id.rbUpAdmin);
         RadioButton rbUpUser = view.findViewById(R.id.rbUpUser);
         Button btUpValider = view.findViewById(R.id.btUpValider);
         Button btUpAnnuler = view.findViewById(R.id.btUpAnnuler);
 
-        upNom.setText(u.getFirst_name());
-        upPrenom.setText(u.getLast_name());
+        upPrenom.setText(u.getFirst_name());
+        upNom.setText(u.getLast_name());
         upEmail.setText(u.getEmail());
 
         if(u.getAdmin() == 1){
@@ -126,11 +126,8 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
             @Override
             public void onClick(View v) {
 
-                User u = new User(
-                        upPrenom.getText().toString(),
-                        upNom.getText().toString(),
-                        upEmail.getText().toString(),
-                        admin);
+                User user = new User(upPrenom.getText().toString(), upNom.getText().toString(), upEmail.getText().toString(), admin);
+                user.setId(u.getId());
 
                 InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
                 Call<Boolean> call = serveur.updateUser("updateUser", u.getId(), upPrenom.getText().toString(), upNom.getText().toString(), upEmail.getText().toString(), admin);
@@ -139,8 +136,11 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                         boolean b = response.body();
-                        adapterList.updateUser(u, position);
-                        alertDialog1.dismiss();
+                        if(b == true){
+                            adapterList.updateUser(user, position);
+                            alertDialog1.dismiss();
+                        }
+
                     }
 
                     @Override

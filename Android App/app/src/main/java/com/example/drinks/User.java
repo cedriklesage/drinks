@@ -31,6 +31,14 @@ public class User {
         this.admin = admin;
     }
 
+    public User(String first_name, String last_name, String email, String password, int admin) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.admin = admin;
+    }
+
     public User(String first_name, String last_name, String email, int admin) {
         this.first_name = first_name;
         this.last_name = last_name;

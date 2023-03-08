@@ -96,5 +96,13 @@ public interface InterfaceServeur {
                              @Field("email") String email,
                              @Field("admin") int admin);
 
-//    Call<ResponseBody> updateUser(String updateUser, User u, int id);
+    //Create a new user admin side
+    @POST("users.php")
+    @FormUrlEncoded
+    Call<Integer> createUserAdmin(@Field("requete") String action,
+                                  @Field("prenom") String prenom,
+                                  @Field("nom") String nom,
+                                  @Field("email") String email,
+                                  @Field("password") String password,
+                                  @Field("admin") int admin);
 }

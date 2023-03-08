@@ -13,11 +13,7 @@
         android:id="@+id/navAccount"
         android:name="com.example.drinks.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" >
-        <action
-            android:id="@+id/action_navAccount_to_navAdmin"
-            app:destination="@id/navAdmin" />
-    </fragment>
+        tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/navFavorites"
         android:name="com.example.drinks.FavoritesFragment"
@@ -36,10 +32,26 @@
         <action
             android:id="@+id/action_navAdmin_to_usersListFragment"
             app:destination="@id/usersListFragment" />
+        <action
+            android:id="@+id/action_navAdmin_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
     <fragment
         android:id="@+id/usersListFragment"
         android:name="com.example.drinks.UsersListFragment"
         android:label="fragment_users_list"
-        tools:layout="@layout/fragment_users_list" />
+        tools:layout="@layout/fragment_users_list" >
+        <action
+            android:id="@+id/action_usersListFragment_to_navAdmin"
+            app:destination="@id/navAdmin" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.drinks.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_navAdmin"
+            app:destination="@id/navAdmin" />
+    </fragment>
 </navigation>
