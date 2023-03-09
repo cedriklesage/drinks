@@ -32,6 +32,9 @@ Route::get('/inscription',
 Route::post('/inscription',
     [RecettesController::class, 'sign_up'])->name('sign-up-attempt');
 
+Route::get('/deconnexion',
+    [RecettesController::class, 'sign_out'])->name('sign-out');
+
 
 
 Route::get('/',
@@ -43,5 +46,7 @@ Route::get('/drink/{id}',
 Route::get('/favoris',
     [RecettesController::class, 'favoris'])->name('favoris');
 
+Route::get('/search',
+    [RecettesController::class, 'search'])->name('search');
 
 

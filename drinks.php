@@ -36,6 +36,10 @@
         case "getRecommendedDrinks":
             getRecommendedDrinks($con);
             break;
+
+        case "getDrinkCategories":
+            getDrinkCategories($con);
+            break;
     } 
 
 
@@ -150,6 +154,18 @@
     {
         // Retourne 24 recettes aléatoires
         $sql = "select * from recettes order by rand() limit 24";
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetchAll();
+
+        echo json_encode($ligne);
+    }
+
+    function getDrinkCategories($con)
+    {
+        $idDrink = $_POST["id"];
+        $sql = "SELECT c.nom as titre FROM categories c
+                INNER JOIN recettes_categories r on c.id = r.recette_id
+                WHERE r.id = $idDrink";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetchAll();
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\Recette;
 use App\Models\User;
@@ -28,6 +29,7 @@ class RecettesController extends Controller
         $user = DB::table('users')->where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
+            Session::put('user', $user);
             return redirect()->route('accueil');
         } else {
             return redirect()->route('sign-in');
@@ -58,6 +60,12 @@ class RecettesController extends Controller
         return redirect()->route('sign-in');
     }
 
+    public function sign_out()
+    {
+        Session::forget('user');
+        return redirect()->route('accueil');
+    }
+
 
 
 
@@ -75,9 +83,28 @@ class RecettesController extends Controller
         // Return all drinks
         $recettes = Recette::all();
 
+
+        if(Session::get('user') == null) {
+            return redirect()->route('onboarding');
+        }
+        else
+        {
+            $user = Session::get('user');
+            $user_id = $user->id;
+        }
+
+
+        $categories = DB::table('recettes_categories as rc')
+        ->select('c.nom as title', 'rc.recette_id as recette_id', 'rc.categorie_id as categorie_id')
+        ->join('categories as c', 'rc.categorie_id', '=', 'c.id')
+        ->get()
+        ->toArray();
+
         return view('accueil', [
             'drinks' => $recettes,
-            'dailyDrink' => $dailyDrink
+            'dailyDrink' => $dailyDrink,
+            'user_id' => $user_id,
+            'categories' => $categories
         ]);
     }
 
@@ -93,33 +120,72 @@ class RecettesController extends Controller
         ->get()
         ->toArray();
 
+
         return view('drink', [
             'drink' => $recette,
             'steps' => $steps,
-            'id' => $id
+            'id' => $id,
         ]);
     }
 
     public function favoris()
     {
-        if(!Auth::check()) {
-            $login = false;
-            $recettes = null;
+        if(Session::get('user') == null) {
+            return redirect()->route('onboarding');
         }
         else
         {
-            $login = true;
             $recettes = DB::table('recettes')
-            ->select('recettes.id', 'recettes.title', 'recettes.image', 'recettes.description', 'recettes.etapes', 'recettes.temps')
+            ->select('recettes.id', 'recettes.title', 'recettes.image', 'recettes.description', 'recettes.etapes', 'recettes.temps', 'recettes.main_color')
             ->join('favoris', 'recettes.id', '=', 'favoris.recette_id')
-            ->where('favoris.user_id', Auth::user()->id)
+            ->where('favoris.user_id', Session::get('user')->id)
             ->get();
+
+            $categories = DB::table('recettes_categories as rc')
+            ->select('c.nom as title', 'rc.recette_id as recette_id', 'rc.categorie_id as categorie_id')
+            ->join('categories as c', 'rc.categorie_id', '=', 'c.id')
+            ->get()
+            ->toArray();
+
+            $user = Session::get('user');
+            $user_id = $user->id;
+
+            return view('accueil', [
+                'drinks' => $recettes,
+                'user_id' => $user_id,
+                'categories' => $categories
+            ]);
+        }
+
+    }
+
+    public function search(Request $request)
+    {
+        $recettes = DB::table('recettes')
+        ->select('recettes.id', 'recettes.title', 'recettes.image', 'recettes.description', 'recettes.etapes', 'recettes.temps', 'recettes.main_color')
+        ->where('recettes.title', 'like', '%'.$request->search.'%')
+        ->get();
+
+        $categories = DB::table('recettes_categories as rc')
+        ->select('c.nom as title', 'rc.recette_id as recette_id', 'rc.categorie_id as categorie_id')
+        ->join('categories as c', 'rc.categorie_id', '=', 'c.id')
+        ->get()
+        ->toArray();
+
+        if(Session::get('user') == null) {
+            return redirect()->route('onboarding');
+        }
+        else{
+            $user = Session::get('user');
+            $user_id = $user->id;
         }
 
 
-        return view('favoris', [
+        return view('accueil', [
             'drinks' => $recettes,
-            'login' => $login
+            'user_id' => $user_id,
+            'categories' => $categories,
+            'search_request' => $request->search
         ]);
     }
 
