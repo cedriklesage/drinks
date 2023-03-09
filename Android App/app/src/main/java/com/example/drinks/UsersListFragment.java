@@ -108,14 +108,14 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
             admin = 0;
         }
 
-        rbUpUser.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        rbUpAdmin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    admin = 0;
+                    admin = 1;
                 }
                 else {
-                    admin = 1;
+                    admin = 0;
                 }
             }
         });
@@ -140,7 +140,6 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
                             adapterList.updateUser(user, position);
                             alertDialog1.dismiss();
                         }
-
                     }
 
                     @Override
