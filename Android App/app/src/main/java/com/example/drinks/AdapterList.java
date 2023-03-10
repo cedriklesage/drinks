@@ -30,7 +30,8 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
     @Override
     public void onBindViewHolder(MonViewHolder holder, int position) {
-        holder.firstNameTxt.setText(listeUser.get(position).getFirst_name());
+        holder.firstNameTxt.setText(listeUser.get(position).getFirst_name() + " " + listeUser.get(position).getLast_name());
+        holder.emailTxt.setText(listeUser.get(position).getEmail());
     }
 
     @Override

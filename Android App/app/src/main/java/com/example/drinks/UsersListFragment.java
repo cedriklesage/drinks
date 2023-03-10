@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
     private RecyclerView recyclerView;
     private AdapterList adapterList;
     int admin;
+
+    TextView listBackButton;
 
     public UsersListFragment() {
         // Required empty public constructor
@@ -52,6 +56,15 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        listBackButton = getActivity().findViewById(R.id.list_BackButton);
+        listBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(UsersListFragment.this)
+                        .navigate(R.id.action_usersListFragment_to_navAdmin);
+            }
+        });
 
         recyclerView = getView().findViewById(R.id.rvListUsers);
         recyclerView.setHasFixedSize(true);
@@ -79,6 +92,8 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
     @Override
     public void gestionClick(User u, int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        View customTitle = LayoutInflater.from(getActivity()).inflate(R.layout.custom_alertdialog_header, null);
+        builder.setCustomTitle(customTitle);
         builder.setCancelable(false);
         builder.setTitle("Modifier");
 
