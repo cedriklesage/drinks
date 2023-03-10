@@ -30,20 +30,8 @@
         android:label="fragment_admin"
         tools:layout="@layout/fragment_admin" >
         <action
-            android:id="@+id/action_navAdmin_to_usersListFragment"
-            app:destination="@id/usersListFragment" />
-        <action
             android:id="@+id/action_navAdmin_to_addFragment"
             app:destination="@id/addFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/usersListFragment"
-        android:name="com.example.drinks.UsersListFragment"
-        android:label="fragment_users_list"
-        tools:layout="@layout/fragment_users_list" >
-        <action
-            android:id="@+id/action_usersListFragment_to_navAdmin"
-            app:destination="@id/navAdmin" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"

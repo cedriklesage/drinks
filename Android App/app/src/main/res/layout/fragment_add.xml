@@ -16,27 +16,6 @@
         android:padding="24dp">
 
         <TextView
-            android:id="@+id/add_BackButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Retour"
-            android:textColor="@color/white" />
-
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:max="100"
-            android:maxHeight="3dp"
-            android:minHeight="3dp"
-            android:progress="33"
-            android:progressBackgroundTint="@color/dark_grey"
-            android:progressTint="@color/white" />
-
-        <TextView
             android:id="@+id/txtAddHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

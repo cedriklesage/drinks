@@ -31,8 +31,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddFragment extends Fragment {
-
-    TextView addBackButton;
     EditText edPrenom;
     EditText edNom;
     EditText edEmail;
@@ -60,15 +58,6 @@ public class AddFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        addBackButton = getActivity().findViewById(R.id.add_BackButton);
-        addBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(AddFragment.this)
-                        .navigate(R.id.action_addFragment_to_navAdmin);
-            }
-        });
 
         btValider = view.findViewById(R.id.btValider);
         btValider.setOnClickListener(new View.OnClickListener() {

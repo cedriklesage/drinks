@@ -57,15 +57,6 @@ public class UsersListFragment extends Fragment implements InterfaceClick {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listBackButton = getActivity().findViewById(R.id.list_BackButton);
-        listBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(UsersListFragment.this)
-                        .navigate(R.id.action_usersListFragment_to_navAdmin);
-            }
-        });
-
         recyclerView = getView().findViewById(R.id.rvListUsers);
         recyclerView.setHasFixedSize(true);
 
