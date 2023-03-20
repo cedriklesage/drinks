@@ -50,3 +50,8 @@ Route::get('/search',
     [RecettesController::class, 'search'])->name('search');
 
 
+// Mon compte
+Route::get('/compte',
+    [RecettesController::class, 'account'])->name('compte');
+
+

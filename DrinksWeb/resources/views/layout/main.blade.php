@@ -17,22 +17,21 @@
         <div class="left-header">
             <a href="/"><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
             <a href="/">Découvrir</a>
-            <a href="">Créer</a>
             <a href="/favoris">Favoris</a>
         </div>
 
         <div class="right-header">
-            <button class="search-button">
+            <button class="search-button" title="Recherche">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6 0-33.9zM208 336c-70.7 0-128-57.2-128-128s57.2-128 128-128 128 57.2 128 128-57.2 128-128 128z"/>
                 </svg>
             </button>
-            <a href="/profil">
+            <a href="/compte" title="Mon compte">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
                 </svg>
             </a>
-            <a href="/deconnexion">
+            <a href="/deconnexion" title="Déconnexion">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
                 </svg>
@@ -42,7 +41,8 @@
     </header>
     <div class="drink-popup">
         <div class="w-50 drink-popup-content">
-            <div>
+            <div class="loader"></div>
+            <div class="anti-loader">
                 <button class="popup-drink-back-button">X</button>
                 <div class="main-info">
                     <div class="drink-categories"></div>
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="start-drink">
+        <div class="start-drink anti-loader">
             <a href="" class="btn">Commencer la recette</a>
             <button class="btn heart-button" data-uid="{{$user_id}}">
                 <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
@@ -78,6 +78,11 @@
             </form>
         </div>
     </div>
+
+    <div class="error-popup">
+        
+    </div>
     @yield('content')
+    <script src="{{asset('js/search.js')}}"></script>
 </body>
 </html>

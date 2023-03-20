@@ -1,5 +1,5 @@
 <?php
-
+    header("Access-Control-Allow-Origin: *");
     $requete = $_POST["requete"];
     $con = new PDO('mysql:host=cours.cegep3r.info;dbname=h2023_420606ri_eq6;charset=utf8', '2057794', 'Cnqo1248+' );
 
@@ -11,6 +11,18 @@
 
         case "login":
             login($con);
+            break;
+
+        case "changeUserName":
+            changeUserName($con);
+            break;
+
+        case "changeUserEmail":
+            changeUserEmail($con);
+            break;
+
+        case "checkPassword":
+            checkPassword($con);
             break;
     }
 
@@ -34,11 +46,7 @@
         }catch(Exception $e){
             echo json_encode(false);
             return;
-        }
-        //Insert with MD5
-
-
-        
+        }        
     }
 
     function login($con)
@@ -54,6 +62,70 @@
             echo json_encode(0);
         else
             echo json_encode($ligne["id"]);
+    }
+    
+    function changeUserName($con)
+    {
+        $nom = $_POST["last_name"];
+        $prenom = $_POST["first_name"];
+        $id = $_POST["id"];
+
+        try{
+            $sql = "UPDATE users SET first_name = '$prenom', last_name = '$nom' WHERE id = '$id'";
+            $resultat = $con->query($sql);
+
+            echo json_encode(true);
+        }
+        catch(Exception $e){
+            echo json_encode(false);
+        }
+    }
+
+    function changeUserEmail($con)
+    {
+        $email = $_POST["email"];
+        $id = $_POST["id"];
+
+        try{
+            $sql = "UPDATE users SET email = '$email' WHERE id = '$id'";
+            $resultat = $con->query($sql);
+
+            echo json_encode(true);
+        }
+        catch(Exception $e){
+            echo json_encode(false);
+        }
+    }
+
+    function checkPassword($con)
+    {
+        $id = $_POST["id"];
+        $password = $_POST["password"];
+        $sql = "SELECT id FROM users WHERE id = '$id' AND password = MD5('$password')";
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetch();
+
+        if($ligne == false)
+            echo json_encode($resultat);
+        else
+            echo json_encode(true);
+    }
+
+    function changePassword($con)
+    {
+        $id = $_POST["id"];
+        $password = $_POST["password"];
+
+        try{
+            $sql = "UPDATE users SET password = MD5('$password') WHERE id = '$id'";
+            $resultat = $con->query($sql);
+
+            echo json_encode(true);
+        }
+        catch(Exception $e){
+            echo json_encode(false);
+        }
+
     }
 
 ?>
