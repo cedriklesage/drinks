@@ -172,4 +172,20 @@
         echo json_encode($ligne);
     }
 
+    function getSearchResults($con)
+    {
+        $search = $_POST["search"];
+        $sql = "SELECT DISTINCT recettes.id, recettes.title, recettes.image, recettes.description, recettes.etapes, recettes.temps, recettes.main_color
+                FROM recettes
+                LEFT JOIN recettes_categories ON recettes_categories.recette_id = recettes.id
+                LEFT JOIN categories ON categories.id = recettes_categories.categorie_id
+                WHERE recettes.title LIKE '%vodka%' OR categories.nom LIKE '%vodka%'
+                OR recettes.title LIKE '%rhum%' OR categories.nom LIKE '%rhum%'";
+        
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetchAll();
+
+        echo json_encode($ligne);
+    }
+
 ?>

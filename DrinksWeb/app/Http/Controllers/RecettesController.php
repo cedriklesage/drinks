@@ -161,10 +161,20 @@ class RecettesController extends Controller
 
     public function search(Request $request)
     {
+        $searchTerms = explode(' ', $request->search);
+
         $recettes = DB::table('recettes')
-        ->select('recettes.id', 'recettes.title', 'recettes.image', 'recettes.description', 'recettes.etapes', 'recettes.temps', 'recettes.main_color')
-        ->where('recettes.title', 'like', '%'.$request->search.'%')
-        ->get();
+            ->select('recettes.id', 'recettes.title', 'recettes.image', 'recettes.description', 'recettes.etapes', 'recettes.temps', 'recettes.main_color')
+            ->leftJoin('recettes_categories', 'recettes_categories.recette_id', '=', 'recettes.id')
+            ->leftJoin('categories', 'categories.id', '=', 'recettes_categories.categorie_id')
+            ->where(function ($query) use ($searchTerms) {
+                foreach ($searchTerms as $term) {
+                    $query->orWhere('recettes.title', 'like', '%' . $term . '%')
+                          ->orWhere('categories.nom', 'like', '%' . $term . '%');
+                }
+            })
+            ->distinct()
+            ->get();
 
         $categories = DB::table('recettes_categories as rc')
         ->select('c.nom as title', 'rc.recette_id as recette_id', 'rc.categorie_id as categorie_id')
@@ -188,5 +198,29 @@ class RecettesController extends Controller
             'search_request' => $request->search
         ]);
     }
+
+
+
+    // MON COMPTE
+
+    public function account()
+    {
+        if(Session::get('user') == null) {
+            return redirect()->route('onboarding');
+        }
+        else
+        {
+            $user = Session::get('user');
+            $user_id = $user->id;
+
+            $user = DB::table('users')->where('id', $user_id)->first();
+
+            return view('account', [
+                'user' => $user,
+                'user_id' => $user_id
+            ]);
+        }
+    }
+
 
 }

@@ -1,9 +1,18 @@
 //For each button with .drink-card class, add an event listener
 const drinkCards = document.querySelectorAll('.drink-card');
+const loader = document.querySelector('.loader');
+const antiLoader = document.querySelectorAll('.anti-loader');
 //For each button, add an event listener
 drinkCards.forEach((drinkCard) => {
     drinkCard.addEventListener('click', (e) => {
         e.preventDefault();
+
+        
+        loader.classList.add('active');
+        antiLoader.forEach(anti => {
+            anti.classList.add('active');
+        })
+
         // Open the drink popup
         document.querySelector('.drink-popup').classList.add('active');
         document.querySelector('body').classList.add('no-scroll');
@@ -21,6 +30,7 @@ drinkCards.forEach((drinkCard) => {
         document.querySelectorAll('.drink-categories .drink-category-popup').forEach(ingredient => {
             ingredient.remove();
         })
+
 
         // Get the drink ingredients
         const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/drinks.php';
@@ -45,6 +55,10 @@ drinkCards.forEach((drinkCard) => {
                     <span>${ingredient.nom}</span>
                 `;
                 document.querySelector('.main-ingredients').appendChild(ingredientDiv);
+            })
+            loader.classList.remove('active');
+            antiLoader.forEach(anti => {
+                anti.classList.remove('active');
             })
         })
         .catch(error => console.error(error));
@@ -101,6 +115,7 @@ drinkCards.forEach((drinkCard) => {
         })
         .catch(error => console.error(error));
     })
+
 })
 
 // Close the drink popup
@@ -152,15 +167,4 @@ document.querySelector('.heart-button').addEventListener('click', (e) => {
             }
         })
         .catch(error => console.error(error));
-})
-
-
-document.querySelector('.search-button').addEventListener('click', (e) => {
-    document.querySelector('.search-popup').classList.add('active');
-    document.querySelector('body').classList.add('no-scroll');
-})
-
-document.querySelector('.search-popup-back-button').addEventListener('click', (e) => {
-    document.querySelector('.search-popup').classList.remove('active');
-    document.querySelector('body').classList.remove('no-scroll');
 })
