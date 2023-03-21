@@ -62,7 +62,6 @@ public interface InterfaceServeur {
     Call<List<Drink>> searchDrinks(@Field("requete") String action,
                                    @Field("search") String search);
 
-
     // USER //
 
     //Create a new user
@@ -82,32 +81,32 @@ public interface InterfaceServeur {
                      @Field("password") String password);
 
     //Get list of users
-    @POST("users.php")
+    @POST("admin.php")
     @FormUrlEncoded
     Call<List<User>> getUsers(@Field("requete") String action);
 
     //Delete user
-    @POST("users.php")
+    @POST("admin.php")
     @FormUrlEncoded
     Call<Boolean> deleteUser(@Field("requete") String action,
                                   @Field("id") int id);
 
     //Update user
-    @POST("users.php")
+    @POST("admin.php")
     @FormUrlEncoded
     Call<Boolean> updateUser(@Field("requete") String action,
                              @Field("id") int id,
-                             @Field("prenom") String prenom,
-                             @Field("nom") String nom,
+                             @Field("first_name") String first_name,
+                             @Field("last_name") String last_name,
                              @Field("email") String email,
                              @Field("admin") int admin);
 
     //Create a new user admin side
-    @POST("users.php")
+    @POST("admin.php")
     @FormUrlEncoded
     Call<Integer> createUserAdmin(@Field("requete") String action,
-                                  @Field("prenom") String prenom,
-                                  @Field("nom") String nom,
+                                  @Field("first_name") String first_name,
+                                  @Field("last_name") String last_name,
                                   @Field("email") String email,
                                   @Field("password") String password,
                                   @Field("admin") int admin);
