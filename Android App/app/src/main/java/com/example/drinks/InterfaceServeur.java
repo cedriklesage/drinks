@@ -56,6 +56,12 @@ public interface InterfaceServeur {
     @FormUrlEncoded
     Call<List<Etape>> loadSteps(@Field("requete") String action, @Field("idDrink") int id);
 
+    // Search Drinks
+    @POST("drinks.php")
+    @FormUrlEncoded
+    Call<List<Drink>> searchDrinks(@Field("requete") String action,
+                                   @Field("search") String search);
+
 
     // USER //
 

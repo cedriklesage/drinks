@@ -4,30 +4,51 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
     android:background="@drawable/layout_drink_bg"
-    android:elevation="5dp"
-    android:orientation="vertical">
+    android:elevation="5dp">
 
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:drawableStart="@drawable/ic_name"
-        android:drawablePadding="2dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+    <LinearLayout
+        android:id="@+id/layoutAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_weight="0.98"
+        android:background="@drawable/layout_user_bg"
+        android:baselineAligned="false"
+        android:gravity="right"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="2dp"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.02"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_name"
+            android:drawablePadding="2dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="2dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
 </LinearLayout>

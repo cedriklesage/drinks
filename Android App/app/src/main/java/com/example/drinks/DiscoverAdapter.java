@@ -23,7 +23,6 @@ public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.ViewHo
         this.drinks = drinks;
     }
 
-
     @NonNull
     @Override
     public DiscoverAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

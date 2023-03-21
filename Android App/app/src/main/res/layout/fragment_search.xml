@@ -26,6 +26,17 @@
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/layout_input_bg"
+                android:closeIcon="@drawable/ic_close"
+                android:queryHint="Entrez un nom.."
+                android:searchHintIcon="@drawable/ic_search"
+                android:searchIcon="@drawable/ic_search" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/discoverRV"
                 android:layout_width="match_parent"

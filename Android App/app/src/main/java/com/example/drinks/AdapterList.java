@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,6 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
     private List<User> listeUser;
     InterfaceClick gestionClick;
-    Context context;
 
     public AdapterList(List<User> l, InterfaceClick InterfaceClick, Context context) {
         gestionClick = InterfaceClick;
@@ -32,6 +32,12 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
     public void onBindViewHolder(MonViewHolder holder, int position) {
         holder.firstNameTxt.setText(listeUser.get(position).getFirst_name() + " " + listeUser.get(position).getLast_name());
         holder.emailTxt.setText(listeUser.get(position).getEmail());
+
+        if (listeUser.get(position).getAdmin() == 0) {
+            holder.layoutAdmin.setVisibility(View.GONE);
+        } else {
+            holder.layoutAdmin.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -58,6 +64,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
         TextView firstNameTxt;
         TextView emailTxt;
+        LinearLayout layoutAdmin;
 
         public MonViewHolder(@NonNull View itemView) {
 
@@ -65,7 +72,7 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MonViewHolder>
 
             firstNameTxt = itemView.findViewById(R.id.txtName);
             emailTxt = itemView.findViewById(R.id.txtEmail);
-
+            layoutAdmin = itemView.findViewById(R.id.layoutAdmin);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
