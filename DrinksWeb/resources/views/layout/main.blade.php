@@ -15,9 +15,9 @@
 
     <header class="header p-25">
         <div class="left-header">
-            <a href="/"><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
-            <a href="/">Découvrir</a>
-            <a href="/favoris">Favoris</a>
+            <a class="hover-underline-animation-white" href="/"><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
+            <a class="hover-underline-animation-white left-header-link" href="/">Découvrir</a>
+            <a class="hover-underline-animation-white left-header-link" href="/favoris">Favoris</a>
         </div>
 
         <div class="right-header">
@@ -37,8 +37,36 @@
                 </svg>
             </a>
         </div>
+
+        <div class="d-flex j-between align-center gap-25 mobile-icons">
+            <button class="search-button" title="Recherche">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6 0-33.9zM208 336c-70.7 0-128-57.2-128-128s57.2-128 128-128 128 57.2 128 128-57.2 128-128 128z"/>
+                </svg>
+            </button>
+            <button class="hamburgerButton z-1000" aria-label="Main Menu">
+                <svg width="50" height="50" viewBox="0 0 100 100">
+                    <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" style="transition:600ms all cubic-bezier(0.4, 0, 0.2, 1)"/>
+                    <path class="line line2" d="M 20,50 H 80" style="transition: 600ms all cubic-bezier(0.4, 0, 0.2, 1)"/>
+                    <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" style="transition:600ms all cubic-bezier(0.4, 0, 0.2, 1)"/>
+                </svg>
+            </button>
+        </div>
         
     </header>
+
+    <div class="mobile-menu">
+        <div class="w-100 h-50 p-25 m-center d-flex j-center align-center" style="transition: 0.5s all ease;">
+            <div class="h-70 w-100">
+                <ul class="h-100 d-flex flex-col j-between p-r-25 d-bottom">
+                    <li><a class="hover-underline-animation-black" href="/">Découvrir</a></li>
+                    <li><a class="hover-underline-animation-black" href="/favoris">Favoris</a></li>
+                    <li><a class="hover-underline-animation-black" href="/compte">Mon compte</a></li>
+                    <li><a class="hover-underline-animation-black" href="/deconnexion">Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="drink-popup">
         <div class="w-50 drink-popup-content">
             <div class="loader"></div>
@@ -80,9 +108,20 @@
     </div>
 
     <div class="error-popup">
-        
+        <div class="error">
+            <p>Une erreur s'est produite. Veuillez réessayer.</p>
+        </div>
     </div>
     @yield('content')
     <script src="{{asset('js/search.js')}}"></script>
+    <script>
+        const hamburgerButton = document.querySelector('.hamburgerButton');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            hamburgerButton.classList.toggle('opened');
+        });
+    </script>
 </body>
 </html>

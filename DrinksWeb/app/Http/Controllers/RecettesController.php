@@ -28,7 +28,7 @@ class RecettesController extends Controller
     {
         $user = DB::table('users')->where('email', $request->email)->first();
 
-        if ($user && Hash::check($request->password, $user->password)) {
+        if ($user && md5($request->password) === $user->password) {
             Session::put('user', $user);
             return redirect()->route('accueil');
         } else {
@@ -49,7 +49,7 @@ class RecettesController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => md5($request->password)
             ]);
         }
         catch(\Exception $e)

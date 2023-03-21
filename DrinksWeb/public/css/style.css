@@ -362,17 +362,17 @@ h1{
 
 /* --------- */
 
-.hover-underline-animation {
+.hover-underline-animation-black, .hover-underline-animation-white {
     display: inline-block;
     position: relative;
 }
   
-.hover-underline-animation:after {
+.hover-underline-animation-black:after {
     content: '';
     position: absolute;
     width: 100%;
     transform: scaleX(0);
-    height: 4px;
+    height: 2px;
     top: 110%;
     left: 0;
     background-color: black;
@@ -380,7 +380,25 @@ h1{
     transition: transform 0.25s ease-out;
 }
   
-.hover-underline-animation:hover:after {
+.hover-underline-animation-black:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hover-underline-animation-white:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    top: 110%;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.hover-underline-animation-white:hover:after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
@@ -523,7 +541,7 @@ header{
     position: relative;
 }
 
-.header svg{
+.header > .right-header svg, .search-button{
     width: 20px;
     height: 20px;
     fill: var(--off-white);
@@ -1275,7 +1293,7 @@ header{
     gap: 25px;
 }
 
-.error_popup{
+.error-popup{
     position: fixed;
     top: 0;
     left: 0;
@@ -1285,8 +1303,155 @@ header{
     z-index: 1000;
     display: flex;
     justify-content: center;
-    align-items: start;
-    padding-top: 50px;
+    align-items: end;
     transition: all .25s ease;
     pointer-events: none;
+    padding: 25px;
+}
+
+.error-popup .error{
+    width: 100%;
+    max-width: 500px;
+    background-color: var(--off-white);
+    color: var(--black);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 200;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: all .25s ease;
+    pointer-events: none;
+    transform: translateY(25px);
+    opacity: 0;
+}
+
+.error-popup .error.active{
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-menu
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--off-white);
+    border-radius: 15px 0 0 15px;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(.27,.95,.53,1);
+    pointer-events: none;
+    padding: 25px;
+    transform: translateX(100%);
+    list-style: none;
+    opacity: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile-menu
+    {
+        width: 100%;
+        border-radius: 0;
+        opacity: 1;
+    }
+    
+}
+
+.mobile-menu.active
+{
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+.mobile-menu a{
+    color: var(--black);
+    font-size: 1.5rem;
+    font-weight: 200;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.hamburgerButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    z-index: 1000;
+}
+
+.hamburgerButton svg{
+    width: 40px;
+    height: 40px;
+    fill: white;
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    transition: stroke-dasharray 500ms cubic-bezier(.27,.95,.53,1),
+        stroke-dashoffset 500ms cubic-bezier(.27,.95,.53,1);
+}
+
+.opened .line{
+    stroke : black;
+}
+
+.lineBlack {
+    fill: none;
+    stroke: black;
+    stroke-width: 6;
+    transition: stroke-dasharray 500ms cubic-bezier(.27,.95,.53,1),
+        stroke-dashoffset 500ms cubic-bezier(.27,.95,.53,1);
+}
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+.mobile-icons{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .left-header-link, .right-header{
+        display: none !important;
+    }
+
+    .mobile-icons{
+        display: flex !important;
+    }
+    
 }

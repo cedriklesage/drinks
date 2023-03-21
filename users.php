@@ -24,6 +24,10 @@
         case "checkPassword":
             checkPassword($con);
             break;
+        
+        case "changePassword":
+            changePassword($con);
+            break;
     }
 
     function createUser($con)

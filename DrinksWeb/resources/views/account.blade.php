@@ -64,6 +64,8 @@
 
     const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/users.php';
     const userId = {{$user_id}};
+    const errorPopup = document.querySelector('.error-popup div');
+    const errorPopupText = document.querySelector('.error-popup div p');
 
     /* EDIT NAME */
     const editNameSection = document.querySelector('.edit-name-section'); // Section
@@ -81,7 +83,6 @@
         name.classList.toggle('active');
         firstNameInput.classList.toggle('active');
         lastNameInput.classList.toggle('active');
-
     });
 
     cancel.addEventListener('click', () => {
@@ -94,6 +95,16 @@
     save.addEventListener('click', () => {
         const firstName = firstNameInput.value;
         const lastName = lastNameInput.value;
+
+        if(firstName == '' || lastName == '')
+        {
+            errorPopupText.innerHTML = 'Veuillez remplir tous les champs';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+            return;
+        }
 
         const data = new URLSearchParams();
         data.append('requete', 'changeUserName');
@@ -119,10 +130,22 @@
                 name.innerHTML = firstName + ' ' + lastName;
             }
             else{
-
+                errorPopupText.innerHTML = 'Une erreur est survenue, veuillez réessayer.';
+                errorPopup.classList.toggle('active');
+                setTimeout(() => {
+                    errorPopup.classList.toggle('active');
+                }, 3000);
             }
         })
-        .catch(error => console.error(error));
+        .catch(error => 
+        {
+            errorPopupText.innerHTML = 'Une erreur est survenue, veuillez réessayer.';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+        }
+        );
 
     });
 </script>
@@ -155,6 +178,26 @@
     saveEmail.addEventListener('click', () => {
         const emailValue = emailInput.value;
 
+        if(emailValue == '')
+        {
+            errorPopupText.innerHTML = 'Veuillez remplir tous les champs';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+            return;
+        }
+
+        if(!validateEmail(emailValue))
+        {
+            errorPopupText.innerHTML = 'Veuillez entrer une adresse courriel valide.';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+            return;
+        }
+
         const data = new URLSearchParams();
         data.append('requete', 'changeUserEmail');
         data.append('id', userId);
@@ -175,16 +218,40 @@
                 email.classList.toggle('active');
                 emailInput.classList.toggle('active');
                 email.innerHTML = emailValue;
+
+                errorPopupText.innerHTML = 'Votre email a été modifié avec succès.';
+                errorPopup.classList.toggle('active');
+                setTimeout(() => {
+                    errorPopup.classList.toggle('active');
+                }, 3000);
             }
             else{
-                editEmailSection.classList.toggle('active');
-                email.classList.toggle('active');
-                emailInput.classList.toggle('active');
+                errorPopupText.innerHTML = 'Une erreur est survenue, veuillez réessayer.';
+                errorPopup.classList.toggle('active');
+                setTimeout(() => {
+                    errorPopup.classList.toggle('active');
+                }, 3000);
             }
         })
-        .catch(error => console.error(error));
+        .catch(error => 
+        {
+            errorPopupText.innerHTML = 'Une erreur est survenue, veuillez réessayer.';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+        }
+        );
 
     });
+
+    //validate email
+    function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    
 </script>
 
 <!-- Script User Password -->
@@ -217,6 +284,16 @@
         const passwordValue = passwordInput.value;
         const newPasswordValue = newPasswordInput.value;
 
+        if(passwordValue == '' || newPasswordValue == '')
+        {
+            errorPopupText.innerHTML = 'Veuillez remplir tous les champs';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+            return;
+        }
+
         const data = new URLSearchParams();
         data.append('requete', 'checkPassword');
         data.append('id', userId);
@@ -233,8 +310,9 @@
         .then(data => {
             if(data == true) // Check if current password is correct
             {
+                console.log('Password is good, trying to change it');
                 const data2 = new URLSearchParams();
-                data2.append('requete', 'changeUserPassword');
+                data2.append('requete', 'changePassword');
                 data2.append('id', userId);
                 data2.append('password', newPasswordValue);
 
@@ -253,20 +331,39 @@
                         password.classList.toggle('active');
                         passwordInput.classList.toggle('active');
                         newPasswordInput.classList.toggle('active');
-                        password.innerHTML = newPasswordValue;
+
+                        errorPopupText.innerHTML = 'Le mot de passe a bien été modifié.';
+                        errorPopup.classList.toggle('active');
+                        setTimeout(() => {
+                            errorPopup.classList.toggle('active');
+                        }, 3000);
                     }
                     else{
-                        console.log('Erreur');
+                        errorPopupText.innerHTML = 'Une erreur est survenue, veuillez réessayer.';
+                        errorPopup.classList.toggle('active');
+                        setTimeout(() => {
+                            errorPopup.classList.toggle('active');
+                        }, 3000);
                     }
                 })
             }
             else{
-                console.log('Mauvais mot de passe');
-                console.log(userId);
-                console.log(passwordValue);
+                errorPopupText.innerHTML = 'Le mot de passe actuel de correspond pas.';
+                errorPopup.classList.toggle('active');
+                setTimeout(() => {
+                    errorPopup.classList.toggle('active');
+                }, 3000);
             }
         })
-        .catch(error => console.error(error));
+        .catch(error => 
+        {
+            errorPopupText.innerHTML = 'Une erreur est survenue, veuillez réessayer.';
+            errorPopup.classList.toggle('active');
+            setTimeout(() => {
+                errorPopup.classList.toggle('active');
+            }, 3000);
+        }
+        );
 
     });
 </script>
