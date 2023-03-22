@@ -27,10 +27,12 @@
             <img src="{{asset('img/stock/cocktails-01.jpg')}}" alt="">
         </div>
     </div>
+    <div class="circles">
+        <div class="circle circle-1" style="--x: 0.5; --y: 0.1;"></div>
+        <div class="circle" style="--x: 1; --y: 0.5;"></div>
+        <div class="circle" style="--x: -0.1; --y: 1;"></div>
+    </div>
 
-    <div class="circle circle-1" style="--x: 0.5; --y: 0.1;"></div>
-	<div class="circle" style="--x: 1; --y: 0.5;"></div>
-	<div class="circle" style="--x: -0.1; --y: 1;"></div>
 
 </body>
 </html>

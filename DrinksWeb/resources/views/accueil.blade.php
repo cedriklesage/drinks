@@ -39,6 +39,13 @@
                 @endforeach
             </div>
         </div>
+        @if($drinks->count() == 0)
+        <div class="middle-message">
+            <img src="{{asset('img/sad-monster.png')}}" alt="">
+            <h1 class="m-b-10">Aucun résultat</h1>
+            <p class="">Quelqu'un est parti avec nos recettes...</p>
+        </div>
+        @endif
     </div>
 
     <script src="{{asset('js/gestion-drink.js')}}"></script>

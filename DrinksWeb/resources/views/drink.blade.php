@@ -104,7 +104,7 @@
             if(waitForWeight)
             {
                 background.style.background = "linear-gradient(0deg, rgba(33, 32, 42,1) 0%, rgba(33, 32, 42,1) "+((currentWeight - startWeight) / (targetWeight - startWeight) * 100)+"%, rgba(255,255,255,0) "+((currentWeight - startWeight) / (targetWeight - startWeight) * 100)+"%)";
-
+                console.log("current weight: " + currentWeight);
                 if(currentWeight >= targetWeight)
                 {
                     waitForWeight = false;
@@ -149,11 +149,11 @@
                 if(steps[stepCount].stepType == "glace")
                 {
                     waitForWeight = false;
-                    nextStepButton.style.visibility = "hidden";
+                    nextStepButton.style.visibility = "visible";
                 }
                 else if(steps[stepCount].stepType == "verse")
                 {
-                    nextStepButton.style.visibility = "visible";
+                    nextStepButton.style.visibility = "hidden";
                     waitForWeight = true;
                 }
                 else if(steps[stepCount].stepType == "shake")

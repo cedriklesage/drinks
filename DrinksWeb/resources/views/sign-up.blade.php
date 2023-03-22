@@ -14,8 +14,8 @@
     <header class="header w-50 p-25">
         <a href=""><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
     </header>
-    <div class="w-100 h-100 d-flex d-center">
-        <div class="w-30">
+    <div class="w-100 h-100 d-flex d-center" style="position: absolute;top: 0;left: 0;">
+        <div class="w-m-30 p-25 trans-1">
             <h1 class="m-b-25">Créer un compte</h1>
             <form action="{{route('sign-up-attempt')}}" method="POST">
                 @csrf

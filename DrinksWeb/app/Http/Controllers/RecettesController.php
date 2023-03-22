@@ -32,7 +32,8 @@ class RecettesController extends Controller
             Session::put('user', $user);
             return redirect()->route('accueil');
         } else {
-            return redirect()->route('sign-in');
+            $error = true;
+            return redirect()->route('sign-in')->with('error', $error);
         }
     }
 

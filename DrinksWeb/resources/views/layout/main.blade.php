@@ -15,7 +15,7 @@
 
     <header class="header p-25">
         <div class="left-header">
-            <a class="hover-underline-animation-white" href="/"><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
+            <a class="" href="/"><img class="header-logo" src="{{asset('img/drink-white-logo.png')}}" alt=""></a>
             <a class="hover-underline-animation-white left-header-link" href="/">Découvrir</a>
             <a class="hover-underline-animation-white left-header-link" href="/favoris">Favoris</a>
         </div>
@@ -56,9 +56,10 @@
     </header>
 
     <div class="mobile-menu">
-        <div class="w-100 h-50 p-25 m-center d-flex j-center align-center" style="transition: 0.5s all ease;">
+        <div class="w-100 m-center d-flex j-center align-center" style="transition: 0.5s all ease; padding: 5px;ssss">
             <div class="h-70 w-100">
-                <ul class="h-100 d-flex flex-col j-between p-r-25 d-bottom">
+                <ul class="h-100 d-flex flex-col j-between6 d-bottom">
+                    <a class="" href="/"><img class="header-logo" src="{{asset('img/drink-black-logo.png')}}" alt=""></a>
                     <li><a class="hover-underline-animation-black" href="/">Découvrir</a></li>
                     <li><a class="hover-underline-animation-black" href="/favoris">Favoris</a></li>
                     <li><a class="hover-underline-animation-black" href="/compte">Mon compte</a></li>

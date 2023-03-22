@@ -37,7 +37,7 @@ drinkCards.forEach((drinkCard) => {
         const data = new URLSearchParams();
         data.append('requete', 'getDrinkIngredients');
         data.append('id', drinkCard.dataset.id);
-
+        
         fetch(url, {
         method: 'POST',
         headers: {
@@ -67,7 +67,6 @@ drinkCards.forEach((drinkCard) => {
         const data2 = new URLSearchParams();
         data2.append('requete', 'getDrinkCategories');
         data2.append('id', drinkCard.dataset.id);
-
         fetch(url, {
         method: 'POST',
         headers: {

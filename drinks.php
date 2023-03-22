@@ -164,8 +164,8 @@
     {
         $idDrink = $_POST["id"];
         $sql = "SELECT c.nom as titre FROM categories c
-                INNER JOIN recettes_categories r on c.id = r.recette_id
-                WHERE r.id = $idDrink";
+                INNER JOIN recettes_categories r on c.id = r.categorie_id
+                WHERE r.recette_id = $idDrink";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetchAll();
 
