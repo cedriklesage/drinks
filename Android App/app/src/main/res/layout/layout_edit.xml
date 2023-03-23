@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/black"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +16,10 @@
 
         <EditText
             android:id="@+id/upPrenom"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="0.3"
+            android:layout_marginRight="16dp"
+            android:layout_weight="0.5"
             android:background="@drawable/layout_input_bg"
             android:ems="10"
             android:fontFamily="@font/poppins_medium"
@@ -34,8 +35,7 @@
             android:id="@+id/upNom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.5"
             android:background="@drawable/layout_input_bg"
             android:ems="10"
             android:fontFamily="@font/poppins_medium"
@@ -52,12 +52,12 @@
         android:id="@+id/upEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/layout_input_bg"
         android:ems="10"
+        android:fontFamily="@font/poppins_medium"
         android:hint="Courriel"
         android:inputType="textPersonName"
-        android:fontFamily="@font/poppins_medium"
-        android:background="@drawable/layout_input_bg"
         android:minHeight="48dp"
         android:padding="10dp"
         android:textColor="@color/white"
@@ -73,13 +73,11 @@
             android:id="@+id/tvUpDefault"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="Rôle :"
-            android:textAlignment="center"
             android:fontFamily="@font/poppins_medium"
-            android:minHeight="48dp"
-            android:padding="10dp"
+            android:text="Rôle :"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textColorHint="@color/light_grey"
             android:textSize="16sp"
@@ -94,19 +92,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/rbUpAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:layout_weight="0.5"
-                android:outlineSpotShadowColor="@color/black"
-                android:text="Administrateur"
                 android:fontFamily="@font/poppins_medium"
                 android:minHeight="48dp"
+                android:outlineSpotShadowColor="@color/black"
                 android:padding="10dp"
+                android:text="Administrateur"
                 android:textColor="@color/white"
                 android:textColorHint="@color/light_grey"
                 android:textSize="14sp" />
@@ -115,13 +112,12 @@
                 android:id="@+id/rbUpUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:layout_weight="0.5"
-                android:outlineSpotShadowColor="@color/black"
-                android:text="Utilisateur"
                 android:fontFamily="@font/poppins_medium"
                 android:minHeight="48dp"
+                android:outlineSpotShadowColor="@color/black"
                 android:padding="10dp"
+                android:text="Utilisateur"
                 android:textColor="@color/white"
                 android:textColorHint="@color/light_grey"
                 android:textSize="14sp" />
@@ -131,35 +127,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
         <Button
             android:id="@+id/btUpValider"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginTop="24dp"
             android:layout_weight="0.5"
             android:fontFamily="@font/poppins_medium"
             android:minHeight="48dp"
-            android:onClick="gestionValider"
             android:padding="10dp"
-            android:text="Valider"
+            android:text="Ajouter"
+            android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <Button
             android:id="@+id/btUpAnnuler"
-            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
             android:layout_weight="0.5"
             android:fontFamily="@font/poppins_medium"
             android:minHeight="48dp"
-            android:onClick="gestionAnnuler"
             android:padding="10dp"
             android:text="Annuler"
-            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="14sp" />
-
     </LinearLayout>
 </LinearLayout>

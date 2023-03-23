@@ -81,8 +81,8 @@ class RecettesController extends Controller
         // Random daily drink
         $dailyDrink = Recette::inRandomOrder()->first();
 
-        // Return all drinks
-        $recettes = Recette::all();
+        // Return 24 drinks
+        $recettes = Recette::take(24)->get();
 
 
         if(Session::get('user') == null) {
@@ -101,11 +101,14 @@ class RecettesController extends Controller
         ->get()
         ->toArray();
 
+        $pageTitle = 'accueil';
+
         return view('accueil', [
             'drinks' => $recettes,
             'dailyDrink' => $dailyDrink,
             'user_id' => $user_id,
-            'categories' => $categories
+            'categories' => $categories,
+            'pageTitle' => $pageTitle
         ]);
     }
 
@@ -151,10 +154,13 @@ class RecettesController extends Controller
             $user = Session::get('user');
             $user_id = $user->id;
 
+            $pageTitle = 'favoris';
+
             return view('accueil', [
                 'drinks' => $recettes,
                 'user_id' => $user_id,
-                'categories' => $categories
+                'categories' => $categories,
+                'pageTitle' => $pageTitle
             ]);
         }
 
@@ -191,12 +197,15 @@ class RecettesController extends Controller
             $user_id = $user->id;
         }
 
+        $pageTitle = 'search';
+
 
         return view('accueil', [
             'drinks' => $recettes,
             'user_id' => $user_id,
             'categories' => $categories,
-            'search_request' => $request->search
+            'search_request' => $request->search,
+            'pageTitle' => $pageTitle
         ]);
     }
 

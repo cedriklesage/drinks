@@ -2,8 +2,13 @@
 const drinkCards = document.querySelectorAll('.drink-card');
 const loader = document.querySelector('.loader');
 const antiLoader = document.querySelectorAll('.anti-loader');
+const errorPopup = document.querySelector('.error-popup div');
+const errorPopupText = document.querySelector('.error-popup div p');
 //For each button, add an event listener
-drinkCards.forEach((drinkCard) => {
+
+drinkCards.forEach(addEventCard);
+
+function addEventCard(drinkCard) {
     drinkCard.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -50,10 +55,23 @@ drinkCards.forEach((drinkCard) => {
             data.forEach(ingredient => {
                 const ingredientDiv = document.createElement('div');
                 ingredientDiv.classList.add('ingredient');
+                if(ingredient.quantite != 0) {
                 ingredientDiv.innerHTML = `
                     <img src="${ingredient.image}" alt="">
-                    <span>${ingredient.nom}</span>
+                    <div style="display:flex; flex-direction:column;" >
+                        <span>${ingredient.nom}</span>
+                        <span style="font-size: 14px;">${ingredient.quantite}ml</span>
+                    </div>
                 `;
+                }
+                else {
+                    ingredientDiv.innerHTML = `
+                    <img src="${ingredient.image}" alt="">
+                    <div style="display:flex; flex-direction:column;" >
+                        <span>${ingredient.nom}</span>
+                    </div>
+                `;
+                }
                 document.querySelector('.main-ingredients').appendChild(ingredientDiv);
             })
             loader.classList.remove('active');
@@ -61,7 +79,19 @@ drinkCards.forEach((drinkCard) => {
                 anti.classList.remove('active');
             })
         })
-        .catch(error => console.error(error));
+        .catch(error => 
+            {
+                loader.classList.remove('active');
+                antiLoader.forEach(anti => {
+                    anti.classList.remove('active');
+                })
+                errorPopupText.innerHTML = 'Une erreur est survenue. Veuillez réessayer.';
+                errorPopup.classList.toggle('active');
+                setTimeout(() => {
+                    errorPopup.classList.toggle('active');
+                }, 3000);
+            }
+        );
 
         // Get the drink categories
         const data2 = new URLSearchParams();
@@ -114,8 +144,7 @@ drinkCards.forEach((drinkCard) => {
         })
         .catch(error => console.error(error));
     })
-
-})
+}
 
 // Close the drink popup
 document.querySelector('.popup-drink-back-button').addEventListener('click', () => {
@@ -166,4 +195,107 @@ document.querySelector('.heart-button').addEventListener('click', (e) => {
             }
         })
         .catch(error => console.error(error));
-})
+});
+
+
+
+/* LOAD MORE BUTTON */
+const loadMoreButton = document.querySelector('.load-more-btn');
+const loadMoreButtonText = document.querySelector('.load-more-btn span');
+const loadMoreButtonIcon = document.querySelector('.load-more-btn div');
+console.log(loadMoreButtonIcon);
+console.log(loadMoreButtonText);
+const drinkGrid = document.querySelector('.drink-grid');
+var offset = 24;
+
+loadMoreButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    loadMoreButtonText.classList.add('active');
+    loadMoreButtonIcon.classList.add('active');
+    const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/drinks.php';
+    const data = new URLSearchParams();
+    data.append('requete', 'loadMoreDrinks');
+    data.append('offset', offset);
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+        })
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(drink => {
+                // Create the button element
+                const button = document.createElement('button');
+                button.classList.add('drink-card');
+                button.dataset.id = drink.id;
+                button.dataset.title = drink.title;
+                button.dataset.description = drink.description;
+                button.dataset.image = drink.image;
+            
+                // Create the drink categories element
+                const drinkCategories = document.createElement('div');
+                drinkCategories.classList.add('drink-categories');
+                let count = 0;
+                categories.forEach(category => {
+                    if (category.recette_id === drink.id) {
+                    const drinkCategory = document.createElement('span');
+                    drinkCategory.classList.add('drink-category');
+                    drinkCategory.textContent = category.title;
+                    drinkCategories.appendChild(drinkCategory);
+                    count++;
+                    if (count === 2) {
+                        return;
+                    }
+                    }
+                });
+                button.appendChild(drinkCategories);
+            
+                // Create the drink image element
+                const image = document.createElement('img');
+                image.src = drink.image;
+                image.alt = '';
+            
+                // Append the drink image element to the button element
+                button.appendChild(image);
+            
+                // Create the drink name element
+                const name = document.createElement('span');
+                name.classList.add('drink-name');
+                name.textContent = drink.title;
+            
+                // Append the drink name element to the button element
+                button.appendChild(name);
+            
+                // Create the see drink element
+                const seeDrink = document.createElement('div');
+                seeDrink.classList.add('see-drink');
+            
+                //inner html of svg
+                seeDrink.innerHTML = 
+                `<svg viewBox="0 0 22 22" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <line x1="0" y1="12" x2="19" y2="12"></line>
+                    <line x1="15" y1="16" x2="19" y2="12"></line>
+                    <line x1="15" y1="8" x2="19" y2="12"></line>
+                </svg>`;
+                button.appendChild(seeDrink);
+
+                const cardCircle = document.createElement('div');
+                cardCircle.classList.add('card-circle');
+                cardCircle.style.setProperty('--color', drink.main_color);
+                button.appendChild(cardCircle);
+
+                drinkGrid.appendChild(button);
+                addEventCard(button);
+            })
+
+        })
+        .catch(error => console.error(error));
+
+    offset += 24;
+    loadMoreButtonText.classList.remove('active');
+    loadMoreButtonIcon.classList.remove('active');
+});

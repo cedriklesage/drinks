@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     DrinkAdapter weeklyDrinkAdapter;
-    RecyclerView weekDrinkRV;
+    RecyclerView weekDrinkRV, popularDrinkRV;
     Drink dailyDrink;
     public HomeFragment() {
         // Required empty public constructor
@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
     {
         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
         weekDrinkRV = view.findViewById(R.id.weekDrinks);
+        popularDrinkRV = view.findViewById(R.id.popularDrinks);
 
 
 
@@ -88,6 +89,28 @@ public class HomeFragment extends Fragment {
                 dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.hor_divider_lv1));
                 weekDrinkRV.addItemDecoration(dividerItemDecoration);
                 weekDrinkRV.setAdapter(weeklyDrinkAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Drink>> call, Throwable t) {
+                Toast.makeText(getActivity(), "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Get the popular drinks
+        Call<List<Drink>> call3 = serveur.getDrinks("getWeeklyDrinks");
+        call3.enqueue(new Callback<List<Drink>>() {
+            @Override
+            public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {
+                //Put in recycler view
+                List<Drink> drinks = response.body();
+                popularDrinkRV.setHasFixedSize(true);
+                popularDrinkRV.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+                weeklyDrinkAdapter = new DrinkAdapter(drinks);
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(popularDrinkRV.getContext(), DividerItemDecoration.HORIZONTAL);
+                dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.hor_divider_lv1));
+                popularDrinkRV.addItemDecoration(dividerItemDecoration);
+                popularDrinkRV.setAdapter(weeklyDrinkAdapter);
             }
 
             @Override

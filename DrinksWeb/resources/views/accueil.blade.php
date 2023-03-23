@@ -46,8 +46,18 @@
             <p class="">Quelqu'un est parti avec nos recettes...</p>
         </div>
         @endif
+        @if($pageTitle == 'accueil' && $drinks->count() > 0)
+        <div class="w-100 d-flex d-center m-t-50">
+            <button class="btn load-btn load-more-btn">
+                <span>Charger plus</span>
+                <div class="load-more-loader"></div>
+            </button>
+        </div>
+        @endif
+
     </div>
 
     <script src="{{asset('js/gestion-drink.js')}}"></script>
+    <script>const categories = <?php echo json_encode($categories)?>;</script>
 
 @endsection

@@ -17,6 +17,7 @@
     <string name="ph_drink">Martini aux fraises</string>
     <string name="popular_header">Populaires en ce moment</string>
     <string name="drink_of_week">Drinks de la semaine</string>
+    <string name="drink_popular">Populaire en ce moment</string>
     <string name="title_activity_drink_details">DrinkDetails</string>
     <string name="action_settings">Settings</string>
     <string name="large_text"></string>

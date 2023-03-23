@@ -40,6 +40,10 @@
         case "getDrinkCategories":
             getDrinkCategories($con);
             break;
+
+        case "loadMoreDrinks":
+            loadMoreDrinks($con);
+            break;
     } 
 
 
@@ -182,6 +186,16 @@
                 WHERE recettes.title LIKE '%vodka%' OR categories.nom LIKE '%vodka%'
                 OR recettes.title LIKE '%rhum%' OR categories.nom LIKE '%rhum%'";
         
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetchAll();
+
+        echo json_encode($ligne);
+    }
+
+    function loadMoreDrinks($con)
+    {
+        $offset = $_POST["offset"];
+        $sql = "SELECT * FROM recettes LIMIT 24 OFFSET $offset";
         $resultat = $con->query($sql);
         $ligne = $resultat->fetchAll();
 
