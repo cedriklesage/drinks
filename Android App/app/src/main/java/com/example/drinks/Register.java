@@ -68,37 +68,43 @@ public class Register extends AppCompatActivity {
 
             else {
 
-                SharedPreferences.Editor register = getSharedPreferences("register", MODE_PRIVATE).edit();
-                register.putString("prenom", prenom);
-                register.putString("nom", nom);
-                register.putString("email", email);
-                register.putString("password", password);
-                register.apply();
+                if(email.contains("@") && email.contains("."))
+                {
+                    emailTxt.setBackground(getDrawable(R.drawable.layout_input_bg));
+                }
+                else{
+                    SharedPreferences.Editor register = getSharedPreferences("register", MODE_PRIVATE).edit();
+                    register.putString("prenom", prenom);
+                    register.putString("nom", nom);
+                    register.putString("email", email);
+                    register.putString("password", password);
+                    register.apply();
 
-                //Create the user
-                Call<Integer> call = serveur.createUser("createUser", prenom, nom, email, password);
-                call.enqueue(new retrofit2.Callback<Integer>() {
-                    @Override
-                    public void onResponse(Call<Integer> call, retrofit2.Response<Integer> response) {
-                        if (response.body() != 0) {
-                            SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putInt("id", response.body());
-                            editor.apply();
-                            Intent intent = new Intent(Register.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            finish();
+                    //Create the user
+                    Call<Integer> call = serveur.createUser("createUser", prenom, nom, email, password);
+                    call.enqueue(new retrofit2.Callback<Integer>() {
+                        @Override
+                        public void onResponse(Call<Integer> call, retrofit2.Response<Integer> response) {
+                            if (response.body() != 0) {
+                                SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putInt("id", response.body());
+                                editor.apply();
+                                Intent intent = new Intent(Register.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
 
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Integer> call, Throwable t) {
-                        System.out.println("Error: " + t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<Integer> call, Throwable t) {
+                            System.out.println("Error: " + t.getMessage());
+                        }
+                    });
 
+                }
             }
         });
 

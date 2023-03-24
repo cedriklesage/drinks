@@ -28,11 +28,11 @@
     <string name="drink_start">Commencer</string>
     <string name="drink_next">Suivant</string>
     <string name="favorite">Favoris</string>
-    <string name="discover">Découvrir</string>
+    <string name="discover">Rechercher</string>
 
     <!-- Onboarding -->
     <string name="onboarding_title_1">Bienvenue sur Drinks!</string>
-    <string name="onboarding_title_2">Découvrez les meilleurs cocktails en ville, à reproduire à la maison.</string>
+    <string name="onboarding_title_2">Des cocktails créatifs et délicieux à portée de clic, pour des soirées inoubliables!</string>
     <string name="onboarding_create_account">Créer un compte</string>
     <string name="onboarding_login">Déjà inscrit? Se connecter</string>
 

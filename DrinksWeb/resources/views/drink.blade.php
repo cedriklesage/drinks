@@ -41,7 +41,7 @@
 
         var mqtt;
         var reconnectTimeout = 2000;
-        var host = "172.16.206.130";
+        var host = "172.16.207.132";
         var port = 9001;
 
         var stepCount = -1;
@@ -50,6 +50,7 @@
         var title = document.querySelector('.drink-step-title');
         var description = document.querySelector('.drink-step-description');
         var background = document.querySelector('.making-drink');
+        background.style.transition = "background 1s";
 
         var nextStepButton = document.querySelector('.next-step-button');
         var skipStepButton = document.querySelector('.skip-step-button');
@@ -142,24 +143,26 @@
 
                 title.innerHTML = "Étape "+(stepCount+1)+" : "+steps[stepCount].titre;
                 description.innerHTML = steps[stepCount].description;
-                nextStepButton.style.visibility = "hidden";
-                skipStepButton.style.visibility = "hidden";
                 background.style.background = "linear-gradient(0deg, rgba(33, 32, 42,1) 0%, rgba(33, 32, 42,1) 0%, rgba(255,255,255,0) 0%)";
 
                 if(steps[stepCount].stepType == "glace")
                 {
                     waitForWeight = false;
                     nextStepButton.style.visibility = "visible";
+                    skipStepButton.style.visibility = "hidden";
                 }
                 else if(steps[stepCount].stepType == "verse")
                 {
                     nextStepButton.style.visibility = "hidden";
+                    skipStepButton.style.visibility = "visible";
                     waitForWeight = true;
                 }
                 else if(steps[stepCount].stepType == "shake")
                 {
-                    skipStepButton.style.visibility = "visible";
+                    skipStepButton.style.visibility = "hidden";
+                    nextStepButton.style.visibility = "visible";
                     waitForShake = true;
+
                 }
 
             }

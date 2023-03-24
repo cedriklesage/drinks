@@ -35,7 +35,8 @@
                 android:closeIcon="@drawable/ic_close"
                 android:queryHint="Entrez un nom.."
                 android:searchHintIcon="@drawable/ic_search"
-                android:searchIcon="@drawable/ic_search" />
+                android:searchIcon="@drawable/ic_search"
+                android:clickable="true"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/discoverRV"

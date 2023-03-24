@@ -51,6 +51,7 @@ public class SearchFragment extends Fragment {
         //setContentView(R.layout.fragment_favorites);
 
         searchView = view.findViewById(R.id.searchView);
+        searchView.setIconified(false);
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -61,12 +62,13 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterList(newText);
+
                 return true;
             }
         });
 
         discoverRV = view.findViewById(R.id.discoverRV);
-
+        /*
         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
 
         Call<List<Drink>> call = serveur.getDrinks("getRecommendedDrinks");
@@ -85,7 +87,7 @@ public class SearchFragment extends Fragment {
             public void onFailure(Call<List<Drink>> call, Throwable t) {
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     private void filterList(String text) {
@@ -98,6 +100,8 @@ public class SearchFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Drink>> call, Response<List<Drink>> response) {
                 List<Drink> drinks = response.body();
+                discoverRV.setHasFixedSize(true);
+                discoverRV.setLayoutManager(new GridLayoutManager(getActivity(), 2));
                 discoverRV.setAdapter(new DiscoverAdapter(drinks));
             }
 

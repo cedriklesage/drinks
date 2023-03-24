@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_heart" />
+        app:srcCompat="@mipmap/logo_white_ic_foreground" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/light_black"
+            android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/poppins_bold"
             android:paddingLeft="25dp"
             android:paddingTop="10dp"

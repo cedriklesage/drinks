@@ -32,7 +32,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         holder.name.setText(ingredients.get(position).getName());
         holder.type.setText(ingredients.get(position).getType());
-        holder.quantite.setText(toString().valueOf("(" + ingredients.get(position).getQuantite() + "ml)"));
+        if(ingredients.get(position).getQuantite() == 0.0)
+            holder.quantite.setText("");
+        else
+            holder.quantite.setText(toString().valueOf("(" + ingredients.get(position).getQuantite() + "ml)"));
         if(ingredients.get(position).getAlcool() == 0.0)
             holder.alcool.setText("");
         else

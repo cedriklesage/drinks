@@ -19,6 +19,10 @@
         case "updateUser":
             updateUser($con);
             break;
+
+        case "searchDrinks":
+            searchDrinks($con);
+            break;
     }
 
     function getUsers($con)
@@ -41,25 +45,48 @@
     function updateUser($con)
     {
         $id = $_POST["id"];
-        $nom = $_POST["nom"];
-        $prenom = $_POST["prenom"];
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
         $email = $_POST["email"];
-        $password = $_POST["password"];
         $admin = $_POST["admin"];
 
-        $sql = "update users set nom = '$nom', prenom = '$prenom', email = '$email', password = '$password', admin = '$admin' where id = $id";
-        $resultat = $con->query($sql); 
+        $sql = "update users set first_name = '$first_name', last_name = '$last_name', email = '$email', admin = '$admin' where id = $id";
+        $resultat = $con->query($sql);
+
+        echo json_encode(true);
     }
 
     function createUserAdmin($con)
     {
-        $nom = $_POST["nom"];
-        $prenom = $_POST["prenom"];
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
         $email = $_POST["email"];
         $password = $_POST["password"];
         $admin = $_POST["admin"];
 
-        $sql = "insert into users (nom, prenom, email, password, admin) values ('$nom', '$prenom', '$email', '$password', '$admin')";
+        $sql = "insert into users (first_name, last_name, email, password, admin) values ('$first_name', '$last_name', '$email', MD5('$password'), '$admin')";
         $resultat = $con->query($sql);
+
+        echo json_encode(true);
+    }
+
+    function searchDrinks($con)
+    {
+
+        $search = $_POST["search"];
+
+        $sql = "SELECT DISTINCT recettes.id, recettes.title, recettes.image, recettes.description, recettes.etapes, recettes.temps, recettes.main_color
+        FROM recettes
+        LEFT JOIN recettes_categories ON recettes_categories.recette_id = recettes.id
+        LEFT JOIN categories ON categories.id = recettes_categories.categorie_id
+        WHERE (recettes.title LIKE '%$search%' OR categories.nom LIKE '%$search%')
+        ";
+        $resultat = $con->query($sql); 
+
+        $ligne = $resultat->fetchAll();
+            
+        echo json_encode($ligne);
+
+
     }
 ?>

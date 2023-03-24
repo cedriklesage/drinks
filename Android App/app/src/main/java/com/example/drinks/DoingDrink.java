@@ -1,5 +1,6 @@
 package com.example.drinks;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -32,7 +33,7 @@ public class DoingDrink extends AppCompatActivity {
     Button startBtn;
     static Button nextBtn;
 
-    public static String broker = "172.16.206.130";
+    public static String broker = "172.16.207.132";
     public static String port = "1883";
     public static String clientId = "Android";
     public static String topic = "Drinks";
@@ -268,16 +269,19 @@ public class DoingDrink extends AppCompatActivity {
             if(etapes.get(step).getType().equals("verse"))
             {
                 waitForWeight = true;
-                nextBtn.setVisibility(Button.GONE);
+                nextBtn.setText("Sauter l'étape");
+                nextBtn.setVisibility(Button.VISIBLE);
             }
             else if(etapes.get(step).getType().equals("shake"))
             {
                 waitForShake = true;
-                nextBtn.setVisibility(Button.GONE);
+                nextBtn.setText("Sauter l'étape");
+                nextBtn.setVisibility(Button.VISIBLE);
             }
             else
             {
                 waitForWeight = false;
+                nextBtn.setText("Suivant");
                 nextBtn.setVisibility(Button.VISIBLE);
             }
         }

@@ -30,7 +30,7 @@ public class DrinkDetails extends AppCompatActivity {
     private Boolean isFavorite;
     CategoryAdapter categoryAdapter;
     IngredientAdapter ingredientAdapter;
-    RecyclerView categoryRV, ingredientsRV;
+    RecyclerView ingredientsRV;
 
     Button startBtn;
     ImageButton likeBtn;
@@ -50,10 +50,6 @@ public class DrinkDetails extends AppCompatActivity {
         etapes = getIntent().getStringExtra("etapes");
         image = getIntent().getStringExtra("image");
 
-        categoryRV = findViewById(R.id.drinkCat);
-        categoryRV.setHasFixedSize(true);
-        categoryRV.setLayoutManager(new GridLayoutManager(this, 3));
-
         ingredientsRV = findViewById(R.id.drinkIng);
         ingredientsRV.setHasFixedSize(true);
         ingredientsRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -70,23 +66,6 @@ public class DrinkDetails extends AppCompatActivity {
         btnStart.setText("Commencer (" + etapes + " étapes)");
         ImageView imgDrink = findViewById(R.id.imageDrink);
         Picasso.get().load(image).into(imgDrink);
-
-
-        // Get the categories of the drink
-        Call<List<Category>> categoryCall = serveur.getDrinkCategories("getDrinkCategories", id);
-        categoryCall.enqueue(new Callback<List<Category>>() {
-            @Override
-            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                List<Category> categories = response.body();
-                //Put in recycler view
-                categoryAdapter = new CategoryAdapter(categories);
-                categoryRV.setAdapter(categoryAdapter);
-            }
-            @Override
-            public void onFailure(Call<List<Category>> call, Throwable t) {
-                Toast.makeText(DrinkDetails.this, "Erreur de chargement, veuillez réessayer", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         Call<List<Ingredient>> ingredientCall = serveur.getDrinkIngredients("getDrinkIngredients", id);
         ingredientCall.enqueue(new Callback<List<Ingredient>>() {
