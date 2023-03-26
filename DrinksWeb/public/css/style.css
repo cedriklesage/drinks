@@ -1,15 +1,8 @@
-/*
-Theme Name: Studio F - Theme
-Author: Cedrik Lesage
-Author URI: https://wp-content.co/
-Description: Customed theme for Studio F
-Version: 1.0
-Tested upto: 5.4
-*/
+
 
 /* COLORS */
 :root{
-    --primary-color: #D90452 ;
+    --primary-color: #F23030 ;
     --primary-color-gradient: linear-gradient(125deg, #007AFF 0%, #003cbe 100%);
     --off-white: #F2F2F2;
     --off-white-gradient: linear-gradient(125deg, #fffdf5 0%, #F2ECCE 100%);

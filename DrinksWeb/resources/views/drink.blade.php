@@ -109,7 +109,9 @@
                 if(currentWeight >= targetWeight)
                 {
                     waitForWeight = false;
-                    nextStep();
+                    var audio = new Audio ('{{asset('audio/alert-done.mp3')}}');
+                    audio.play();
+                    setTimeout(nextStep, 2000);
                 }
             }
             if(waitForShake)
@@ -124,8 +126,6 @@
         function nextStep()
         {
             stepCount++;
-            var audio = new Audio ('{{asset('audio/alert-done.mp3')}}');
-            audio.play();
             if(stepCount == steps.length)
             {
                 title.innerHTML = "Votre boisson est prête !";
@@ -159,8 +159,8 @@
                 }
                 else if(steps[stepCount].stepType == "shake")
                 {
-                    skipStepButton.style.visibility = "hidden";
-                    nextStepButton.style.visibility = "visible";
+                    skipStepButton.style.visibility = "visible";
+                    nextStepButton.style.visibility = "hidden";
                     waitForShake = true;
 
                 }
@@ -179,7 +179,10 @@
                 if(i == steps[stepCount].temps * 10)
                 {
                     clearInterval(interval);
-                    nextStep();
+                    var audio = new Audio ('{{asset('audio/alert-done.mp3')}}');
+                    audio.play();
+                    skipStepButton.style.visibility = "hidden";
+                    nextStepButton.style.visibility = "visible";
                 }
             }, 100);
         }
