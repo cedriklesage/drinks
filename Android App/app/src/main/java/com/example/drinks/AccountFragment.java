@@ -16,11 +16,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AccountFragment extends Fragment {
 
     Button btnLogout;
-    Button btnAdmin;
+
+    private TextView tvUsername, tvEmail;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -29,6 +38,8 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
     }
 
@@ -46,6 +57,7 @@ public class AccountFragment extends Fragment {
 
         btnLogout = view.findViewById(R.id.logoutBtn);
 
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,5 +70,31 @@ public class AccountFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+        tvUsername = view.findViewById(R.id.tvUsername);
+        tvEmail = view.findViewById(R.id.tvEmail);
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("user", MODE_PRIVATE);
+        int id = preferences.getInt("id", 1);
+        InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+        Call<User> call = serveur.getUser("getUserInfo", id);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                String name = response.body().getFirst_name() + " " + response.body().getLast_name();
+                tvUsername.setText(name);
+                tvEmail.setText(response.body().getEmail());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getActivity(), "Une erreur est survenue, veuillez réessayer.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
 }

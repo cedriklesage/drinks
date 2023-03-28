@@ -56,8 +56,8 @@
         @endif
 
     </div>
-
-    <script src="{{asset('js/gestion-drink.js')}}"></script>
     <script>const categories = <?php echo json_encode($categories)?>;</script>
+    <script src="{{asset('js/gestion-drink.js')}}"></script>
+
 
 @endsection

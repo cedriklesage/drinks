@@ -203,8 +203,6 @@ document.querySelector('.heart-button').addEventListener('click', (e) => {
 const loadMoreButton = document.querySelector('.load-more-btn');
 const loadMoreButtonText = document.querySelector('.load-more-btn span');
 const loadMoreButtonIcon = document.querySelector('.load-more-btn div');
-console.log(loadMoreButtonIcon);
-console.log(loadMoreButtonText);
 const drinkGrid = document.querySelector('.drink-grid');
 var offset = 24;
 
@@ -240,15 +238,15 @@ loadMoreButton.addEventListener('click', (e) => {
                 drinkCategories.classList.add('drink-categories');
                 let count = 0;
                 categories.forEach(category => {
-                    if (category.recette_id === drink.id) {
-                    const drinkCategory = document.createElement('span');
-                    drinkCategory.classList.add('drink-category');
-                    drinkCategory.textContent = category.title;
-                    drinkCategories.appendChild(drinkCategory);
-                    count++;
-                    if (count === 2) {
-                        return;
-                    }
+                    if (category.recette_id == drink.id) {
+                        if(count < 2)
+                        {
+                            const drinkCategory = document.createElement('span');
+                            drinkCategory.classList.add('drink-category');
+                            drinkCategory.textContent = category.title;
+                            drinkCategories.appendChild(drinkCategory);
+                            count++;
+                        }
                     }
                 });
                 button.appendChild(drinkCategories);

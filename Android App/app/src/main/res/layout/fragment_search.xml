@@ -32,11 +32,11 @@
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:background="@drawable/layout_input_bg"
+                android:clickable="true"
                 android:closeIcon="@drawable/ic_close"
-                android:queryHint="Entrez un nom.."
+                android:queryHint="Rechercher un cocktail"
                 android:searchHintIcon="@drawable/ic_search"
-                android:searchIcon="@drawable/ic_search"
-                android:clickable="true"/>
+                android:searchIcon="@drawable/ic_search" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/discoverRV"

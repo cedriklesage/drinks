@@ -80,6 +80,12 @@ public interface InterfaceServeur {
                      @Field("email") String email,
                      @Field("password") String password);
 
+    //Get user
+    @POST("users.php")
+    @FormUrlEncoded
+    Call<User> getUser(@Field("requete") String action,
+                       @Field("id") int id);
+
     //Get list of users
     @POST("admin.php")
     @FormUrlEncoded

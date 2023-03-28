@@ -28,6 +28,10 @@
         case "changePassword":
             changePassword($con);
             break;
+
+        case "getUserInfo":
+            getUser($con);
+            break;
     }
 
     function createUser($con)
@@ -130,6 +134,16 @@
             echo json_encode(false);
         }
 
+    }
+
+    function getUser($con)
+    {
+        $id = $_POST["id"];
+        $sql = "SELECT * FROM users WHERE id = '$id'";
+        $resultat = $con->query($sql);
+        $ligne = $resultat->fetch();
+
+        echo json_encode($ligne);
     }
 
 ?>
