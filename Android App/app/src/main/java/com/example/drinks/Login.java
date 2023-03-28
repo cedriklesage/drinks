@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -77,14 +78,15 @@ public class Login extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
-
-
+                        }
+                        else{
+                            Toast.makeText(Login.this, "Informations de connexion incorrects.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Integer> call, Throwable t) {
-                        Snackbar.make(v, "Erreur de connexion", Snackbar.LENGTH_LONG).show();
+                        Toast.makeText(Login.this, "Informations de connexion incorrects.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

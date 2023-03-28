@@ -21,7 +21,10 @@ class RecettesController extends Controller
 
     public function sign_in_page()
     {
-        return view('sign-in');
+        if(Session::get('user') != null)
+            return redirect()->route('accueil');
+        else
+            return view('sign-in');
     }
 
     public function sign_in(Request $request)
@@ -39,7 +42,10 @@ class RecettesController extends Controller
 
     public function sign_up_page()
     {
-        return view('sign-up');
+        if(Session::get('user') != null)
+            return redirect()->route('accueil');
+        else
+            return view('sign-up');
     }
 
     public function sign_up(Request $request)
@@ -115,6 +121,14 @@ class RecettesController extends Controller
 
     public function drink($id)
     {
+        if(Session::get('user') == null) {
+            return redirect()->route('onboarding');
+        }
+        else
+        {
+            $user = Session::get('user');
+            $user_id = $user->id;
+        }
         $recette = Recette::find($id);
 
         $steps = DB::table('etapes as e')
@@ -168,6 +182,14 @@ class RecettesController extends Controller
 
     public function search(Request $request)
     {
+        if(Session::get('user') == null) {
+            return redirect()->route('onboarding');
+        }
+        else{
+            $user = Session::get('user');
+            $user_id = $user->id;
+        }
+
         $searchTerms = explode(' ', $request->search);
 
         $recettes = DB::table('recettes')
@@ -189,13 +211,7 @@ class RecettesController extends Controller
         ->get()
         ->toArray();
 
-        if(Session::get('user') == null) {
-            return redirect()->route('onboarding');
-        }
-        else{
-            $user = Session::get('user');
-            $user_id = $user->id;
-        }
+
 
         $pageTitle = 'search';
 

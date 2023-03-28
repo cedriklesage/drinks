@@ -205,11 +205,11 @@ const loadMoreButtonText = document.querySelector('.load-more-btn span');
 const loadMoreButtonIcon = document.querySelector('.load-more-btn div');
 const drinkGrid = document.querySelector('.drink-grid');
 var offset = 24;
+var numberLoad = 0;
 
 loadMoreButton.addEventListener('click', (e) => {
     e.preventDefault();
-    loadMoreButtonText.classList.add('active');
-    loadMoreButtonIcon.classList.add('active');
+    if(numberLoad != 2) {
     const url = 'http://cours.cegep3r.info/H2023/420606RI/GR06/drinks.php';
     const data = new URLSearchParams();
     data.append('requete', 'loadMoreDrinks');
@@ -296,4 +296,10 @@ loadMoreButton.addEventListener('click', (e) => {
     offset += 24;
     loadMoreButtonText.classList.remove('active');
     loadMoreButtonIcon.classList.remove('active');
+    numberLoad += 1;
+    if(numberLoad == 2)
+    {
+        loadMoreButton.style.display = 'none';
+    }
+}
 });
