@@ -117,9 +117,10 @@ public interface InterfaceServeur {
     //Update password
     @POST("admin.php")
     @FormUrlEncoded
-    Call<Boolean> updatePassword(@Field("requete") String action,
+    Call<Integer> updatePassword(@Field("requete") String action,
                                  @Field("id") int id,
-                                 @Field("password") String password);
+                                 @Field("oldPassword") String oldPassword,
+                                 @Field("newPassword") String newPassword);
 
     //Create a new user admin side
     @POST("admin.php")

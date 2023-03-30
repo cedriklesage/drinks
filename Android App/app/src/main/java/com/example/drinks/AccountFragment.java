@@ -128,7 +128,7 @@ public class AccountFragment extends Fragment {
                     public void onClick(View v) {
 
                         User user = new User(editEmail.getText().toString());
-                        user.setId(user.getId());
+                        user.setId(id);
 
                         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
                         Call<Boolean> call = serveur.updateEmail("updateEmail", user.getId(), editEmail.getText().toString());
@@ -139,6 +139,7 @@ public class AccountFragment extends Fragment {
                                 boolean b = response.body();
                                 if(b == true){
                                     alertDialog.dismiss();
+                                    tvEmail.setText(editEmail.getText().toString());
                                 }
                             }
                             @Override
@@ -171,6 +172,9 @@ public class AccountFragment extends Fragment {
 
                 AlertDialog alertDialog2 = builder.create();
 
+                EditText oldPassword = view.findViewById(R.id.oldPassword);
+                EditText newPassword = view.findViewById(R.id.newPassword);
+
                 Button btEdPasswordValider = view.findViewById(R.id.btEdPasswordValider);
                 Button btEdPasswordAnnuler = view.findViewById(R.id.btEdPasswordAnnuler);
 
@@ -180,25 +184,24 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-/*                        User user = new User(newPassword.getText().toString());
-                        user.setId(user.getId());
+                            InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
+                            Call<Integer> call = serveur.updatePassword("updatePassword", id, oldPassword.getText().toString(), newPassword.getText().toString());
 
-                        InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
-                        Call<Boolean> call = serveur.updateEmail("updatePassword", user.getId(), newPassword.getText().toString());
-
-                        call.enqueue(new Callback<Boolean>() {
-                            @Override
-                            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                                boolean b = response.body();
-                                if(b == true){
-                                    alertDialog2.dismiss();
+                            call.enqueue(new Callback<Integer>() {
+                                @Override
+                                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                                    int i = response.body();
+                                    if(i == 1){
+                                        alertDialog2.dismiss();
+                                        Toast.makeText(getActivity(), "Mot de passe changé avec succès!", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
-                            @Override
-                            public void onFailure(Call<Boolean> call, Throwable t) {
-                                String message = t.getMessage();
-                            }
-                        });*/
+                                @Override
+                                public void onFailure(Call<Integer> call, Throwable t) {
+                                    String message = t.getMessage();
+                                    Toast.makeText(getActivity(), "Les informations entrées ne correspondent pas.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                     }
                 });
                 btEdPasswordAnnuler.setOnClickListener(new View.OnClickListener() {

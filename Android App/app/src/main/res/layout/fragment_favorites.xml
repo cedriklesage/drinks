@@ -9,6 +9,7 @@
     tools:context=".FavoritesFragment">
 
     <ScrollView
+        android:id="@+id/svFavorites"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -36,29 +37,35 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <TextView
-                android:id="@+id/tvNoFav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:text="Auncun résultat"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tvNoFav2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:text="Quelqu'un est parti avec nos recettes..."
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:visibility="gone" />
-
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNoFav2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="Quelqu'un est parti avec nos recettes..."
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvNoFav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="Auncun résultat"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </LinearLayout>
