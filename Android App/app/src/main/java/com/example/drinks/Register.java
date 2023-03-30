@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 
@@ -68,9 +69,10 @@ public class Register extends AppCompatActivity {
 
             else {
 
-                if(email.contains("@") && email.contains("."))
+                if(!email.contains("@") || !email.contains("."))
                 {
-                    emailTxt.setBackground(getDrawable(R.drawable.layout_input_bg));
+                    emailTxt.setBackground(getDrawable(R.drawable.layout_input_bg_error));
+                    Toast.makeText(this, "Veuillez mettre un courriel valide.", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     SharedPreferences.Editor register = getSharedPreferences("register", MODE_PRIVATE).edit();
@@ -95,6 +97,10 @@ public class Register extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
 
+                            }
+                            else
+                            {
+                                System.out.println("Error: " + response.body());
                             }
                         }
 
