@@ -107,6 +107,20 @@ public interface InterfaceServeur {
                              @Field("email") String email,
                              @Field("admin") int admin);
 
+    //Update email
+    @POST("admin.php")
+    @FormUrlEncoded
+    Call<Boolean> updateEmail(@Field("requete") String action,
+                              @Field("id") int id,
+                              @Field("email") String email);
+
+    //Update password
+    @POST("admin.php")
+    @FormUrlEncoded
+    Call<Boolean> updatePassword(@Field("requete") String action,
+                                 @Field("id") int id,
+                                 @Field("password") String password);
+
     //Create a new user admin side
     @POST("admin.php")
     @FormUrlEncoded

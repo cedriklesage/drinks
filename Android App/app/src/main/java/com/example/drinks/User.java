@@ -46,6 +46,10 @@ public class User {
         this.admin = admin;
     }
 
+    public User(String email) {
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }

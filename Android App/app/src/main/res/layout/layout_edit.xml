@@ -140,7 +140,7 @@
             android:fontFamily="@font/poppins_medium"
             android:minHeight="48dp"
             android:padding="10dp"
-            android:text="Ajouter"
+            android:text="Modifier"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="14sp" />

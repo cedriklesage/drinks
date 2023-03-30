@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public class FavoritesFragment extends Fragment {
 
     RecyclerView favorisRV;
     DiscoverAdapter favorisAdapter;
+
+    private TextView tvNoFav, tvNoFav2;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -51,6 +54,8 @@ public class FavoritesFragment extends Fragment {
         //setContentView(R.layout.fragment_favorites);
 
         favorisRV = view.findViewById(R.id.discoverRV);
+        tvNoFav = view.findViewById(R.id.tvNoFav);
+        tvNoFav2 = view.findViewById(R.id.tvNoFav2);
 
         InterfaceServeur serveur = RetrofitInstance.getRetrofitInstance().create(InterfaceServeur.class);
 
@@ -68,6 +73,15 @@ public class FavoritesFragment extends Fragment {
                 favorisRV.addItemDecoration(dividerItemDecoration);
                 favorisRV.setAdapter(favorisAdapter);
                 favorisRV.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+                if (drinks.size() == 0) {
+                    tvNoFav.setVisibility(View.VISIBLE);
+                    tvNoFav2.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoFav.setVisibility(View.GONE);
+                    tvNoFav2.setVisibility(View.GONE);
+                }
             }
 
             @Override
