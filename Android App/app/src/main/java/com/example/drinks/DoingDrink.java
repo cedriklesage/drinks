@@ -174,7 +174,20 @@ public class DoingDrink extends AppCompatActivity {
                     }
                     else
                     {
-                        nextStep(currentStep + 1);
+                        bgProgressBar.setProgress((int) (targetWeight));
+                        //wait two seconds before going to next step
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                nextStep(currentStep + 1);
+                            }
+                        }).start();
+
                     }
                 }catch (Exception e)
                 {
